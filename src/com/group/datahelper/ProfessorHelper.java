@@ -14,7 +14,9 @@ public class ProfessorHelper {
 	}
 	
 	public Boolean isMatch(String username, String passwood){
-		return null;
-		
+		Professor professor = (Professor) professorDAO.findByUsername(username).get(0);
+		if(professor.getPassword().equals(professor))
+			return true;
+		return false;
 	}
 }
