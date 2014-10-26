@@ -39,16 +39,18 @@ public class Login extends HttpServlet {
 		String name = (String) request.getParameter("username");
 		String pwd  = (String) request.getParameter("password");
 		
-		Boolean isMatch = professorHelper.isMatch(name, pwd);
+		Professor professor = professorHelper.getProfessor(name);
+		
+		Boolean isMatch = professor.getPassword().equals(pwd);
 		
 		JSONObject object = new JSONObject();
-		
-		if(isMatch){						
+		if(isMatch){
+			request.getSession().setAttribute("professorId", professor.getProfessorId());	
 			object.element("isMatch", "true");
 		}else{
 			object.element("isMatch", "false");
 		}
-				
+		
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("Cache-Control", "no-cache");
@@ -64,21 +66,23 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//Professor professor = professorHelper.getRandomOne();
+		
 		
 		String name = (String) request.getParameter("username");
 		String pwd  = (String) request.getParameter("password");
 		
-		Boolean isMatch = professorHelper.isMatch(name, pwd);
+		Professor professor = professorHelper.getProfessor(name);
+		
+		Boolean isMatch = professor.getPassword().equals(pwd);
 		
 		JSONObject object = new JSONObject();
-		
-		if(isMatch){						
+		if(isMatch){
+			request.getSession().setAttribute("professorId", professor.getProfessorId());	
 			object.element("isMatch", "true");
 		}else{
 			object.element("isMatch", "false");
 		}
-				
+		
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("Cache-Control", "no-cache");

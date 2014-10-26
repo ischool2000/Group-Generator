@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.group.datahelper.ClassHelper;
+
 import net.sf.json.JSONObject;
 
 /**
@@ -18,7 +20,7 @@ import net.sf.json.JSONObject;
 @WebServlet("/CreateProject")
 public class CreateProject extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private static ClassHelper classHelper = new ClassHelper();   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -35,13 +37,13 @@ public class CreateProject extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		int projectId = (Integer) request.getAttribute("projectId");
-		String name = (String) request.getAttribute("name");
-	    int groupSize = (Integer) request.getAttribute("groupSize");
-	    int groupNumber = (Integer) request.getAttribute("groupNumber");
-	    String url =  (String) request.getAttribute("url");
-	    int algorithm = (Integer) request.getAttribute("algorithm");
-	    int reportType = (Integer) request.getAttribute("reportType");
+		int projectId = Integer.parseInt(request.getParameter("projectId"));
+		String name = (String) request.getParameter("name");
+	    int groupSize = Integer.parseInt(request.getParameter("groupSize"));
+	    int groupNumber = Integer.parseInt(request.getParameter("groupNumber"));
+	    String url =  (String) request.getParameter("url");
+	    int algorithm = Integer.parseInt(request.getParameter("algorithm"));
+	    int reportType = Integer.parseInt(request.getParameter("reportType"));
 
         Boolean flag = classHelper.createClass(projectId,name, groupSize, groupNumber, url, algorithm, reportType);
 		

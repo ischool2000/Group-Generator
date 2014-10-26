@@ -35,6 +35,10 @@ public class ProfessorHelper {
 	public Boolean addProssor(String username, String name, String password,
 			String email) {
 		// TODO Auto-generated method stub
+		if(!professorDAO.findByUsername(username).isEmpty()
+				|| professorDAO.findByEmail(email).isEmpty())
+			return false;
+		
 		Professor professor = new Professor();
 		professor.setEmail(email);
 		professor.setName(name);
@@ -49,5 +53,10 @@ public class ProfessorHelper {
 		}
 		
 		
+	}
+
+	public Professor getProfessor(String name) {
+		// TODO Auto-generated method stub
+		return (Professor) professorDAO.findByUsername(name).get(0);
 	}
 }
