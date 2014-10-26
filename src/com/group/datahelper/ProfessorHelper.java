@@ -26,4 +26,23 @@ public class ProfessorHelper {
 			else return false;
 		}
 	}
+
+	public Boolean addProssor(String username, String name, String password,
+			String email) {
+		// TODO Auto-generated method stub
+		Professor professor = new Professor();
+		professor.setEmail(email);
+		professor.setName(name);
+		professor.setPassword(password);
+		professor.setUsername(username);
+		try{
+			professorDAO.save(professor);
+			return true;
+		}catch(RuntimeException e){
+			e.printStackTrace();
+			return false;
+		}
+		
+		
+	}
 }
