@@ -50,10 +50,9 @@ public class Test extends HttpServlet {
 	
 		object.element("name", professor.getName());
 		object.element("email", professor.getEmail());
+		
 		response.setContentType("text/json");
-		
 		response.setCharacterEncoding("UTF-8");
-		
 		response.setHeader("Cache-Control", "no-cache");
 		
 		response.getWriter().write(object.toString());
