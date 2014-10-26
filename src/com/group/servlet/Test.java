@@ -15,7 +15,7 @@ import com.group.model.Professor;
 
 public class Test extends HttpServlet {
 	
-	ProfessorHelper professHelper = new ProfessorHelper();
+	ProfessorHelper professorHelper = new ProfessorHelper();
 	/**
 	 * Constructor of the object.
 	 */
@@ -43,8 +43,17 @@ public class Test extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		Professor professor = professHelper.getRandomOne();
+		String name = (String) request.getAttribute("name");
+		Boolean isExit = professorHelper.isExit(name);
+		JSONObject object = new JSONObject();
+		if(isExit){
+			
+			
+			object.element("isexit", "true");
+		}else{
+			object.element("isexit", "false");
+		}
+		Professor professor = professorHelper.getRandomOne();
 		
 		JSONObject object = new JSONObject();
 	
