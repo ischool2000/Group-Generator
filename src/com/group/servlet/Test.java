@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Test extends HttpServlet {
+import com.group.datahelper.ProfessorHelper;
 
+public class Test extends HttpServlet {
+	
+	ProfessorHelper professHelper = new ProfessorHelper();
 	/**
 	 * Constructor of the object.
 	 */
@@ -37,7 +40,7 @@ public class Test extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
@@ -47,6 +50,7 @@ public class Test extends HttpServlet {
 		out.print("    This is ");
 		out.print(this.getClass());
 		out.println(", using the GET method");
+		out.println("," +  professHelper.getRandomOne().getName());
 		out.println("  </BODY>");
 		out.println("</HTML>");
 		out.flush();
