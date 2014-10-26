@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
 
 import com.group.datahelper.ProfessorHelper;
+import com.group.model.Professor;
 
 public class Test extends HttpServlet {
 	
@@ -43,21 +44,19 @@ public class Test extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		Professor professor = professHelper.getRandomOne();
+		
 		JSONObject object = new JSONObject();
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		out.println("  <BODY>");
-		out.print("    This is ");
-		out.print(this.getClass());
-		out.println(", using the GET method");
-		out.println("," +  professHelper.getRandomOne().getName());
-		out.println("  </BODY>");
-		out.println("</HTML>");
-		out.flush();
-		out.close();
+	
+		object.element("name", professor.getName());
+		object.element("email", professor.getEmail());
+		response.setContentType("text/json");
+		
+		response.setCharacterEncoding("UTF-8");
+		
+		response.setHeader("Cache-Control", "no-cache");
+		
+		response.getWriter().write(object.toString());
 	}
 
 	/**
