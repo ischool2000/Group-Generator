@@ -12,4 +12,9 @@ public class ProfessorHelper {
 		return professor;
 		
 	}
+	
+	public Boolean isMatch(String username, String passwood){
+		return null;
+		
+	}
 }
