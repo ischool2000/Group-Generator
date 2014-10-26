@@ -31,6 +31,20 @@ public class Register extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String username = (String) request.getAttribute("username");
+		String email = (String) request.getAttribute("email");
+		String password = (String) request.getAttribute("password");
+		String name = (String) request.getAttribute("name");
+		
+		Boolean flag = professorHelper.addProssor(username, name, password, email);
+		JSONObject object = new JSONObject();
+		object.element("flag", flag);
+		
+		response.setContentType("text/json");
+		response.setCharacterEncoding("UTF-8");
+		response.setHeader("Cache-Control", "no-cache");
+		
+		response.getWriter().write(object.toString());
 	}
 
 	/**
