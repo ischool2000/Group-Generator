@@ -1,5 +1,7 @@
 package com.group.datahelper;
 
+import java.util.List;
+
 import com.group.DAO.ProfessorDAO;
 import com.group.model.Professor;
 
@@ -14,9 +16,14 @@ public class ProfessorHelper {
 	}
 	
 	public Boolean isMatch(String username, String passwood){
-		Professor professor = (Professor) professorDAO.findByUsername(username).get(0);
-		if(professor.getPassword().equals(professor))
-			return true;
-		return false;
+		List proList = professorDAO.findByUsername(username);
+		if(proList.isEmpty())
+			return false;
+		else{
+			Professor professor = (Professor)proList.get(0);
+			if(professor.getPassword().equals(professor))
+				return true;
+			else return false;
+		}
 	}
 }
