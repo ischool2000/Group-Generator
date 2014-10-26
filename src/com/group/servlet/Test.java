@@ -43,8 +43,8 @@ public class Test extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String name = (String) request.getAttribute("name");
-		//Boolean isExit = professorHelper.isExit(name);
+		/*String name = (String) request.getAttribute("name");
+		Boolean isExit = professorHelper.isExit(name);
 		JSONObject object = new JSONObject();
 		if(isExit){
 			
@@ -64,7 +64,7 @@ public class Test extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("Cache-Control", "no-cache");
 		
-		response.getWriter().write(object.toString());
+		response.getWriter().write(object.toString());*/
 	}
 
 	/**

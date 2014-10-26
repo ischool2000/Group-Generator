@@ -8,7 +8,7 @@
     <class name="com.group.model.Professor" table="Professor" catalog="group_gen">
         <id name="professorId" type="java.lang.Integer">
             <column name="professor_id" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="username" type="java.lang.String">
             <column name="username" length="50" />

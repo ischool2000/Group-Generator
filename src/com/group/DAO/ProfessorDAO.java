@@ -7,6 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
 
 import com.group.model.Professor;
@@ -30,15 +31,13 @@ public class ProfessorDAO extends BaseHibernateDAO  {
 
 
     
-    public void save(Professor transientInstance) {
+    public void save(Professor transientInstance) throws RuntimeException{
+    	Transaction tx = getSession().beginTransaction();  
         log.debug("saving Professor instance");
-        try {
-            getSession().save(transientInstance);
-            log.debug("save successful");
-        } catch (RuntimeException re) {
-            log.error("save failed", re);
-            throw re;
-        }
+        getSession().save(transientInstance);
+        tx.commit();
+        log.debug("save successful");
+         
     }
     
 	public void delete(Professor persistentInstance) {
