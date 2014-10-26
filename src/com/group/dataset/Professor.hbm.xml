@@ -22,11 +22,11 @@
         <property name="email" type="java.lang.String">
             <column name="email" length="50" />
         </property>
-        <set name="professorClassRs" inverse="true">
+        <set name="classes" inverse="true">
             <key>
                 <column name="professor_id" />
             </key>
-            <one-to-many class="com.group.model.ProfessorClassR" />
+            <one-to-many class="com.group.model.Class" />
         </set>
     </class>
 </hibernate-mapping>

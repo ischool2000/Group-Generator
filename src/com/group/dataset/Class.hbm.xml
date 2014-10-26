@@ -8,28 +8,25 @@
     <class name="com.group.model.Class" table="Class" catalog="group_gen">
         <id name="classId" type="java.lang.Integer">
             <column name="class_id" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
+        <many-to-one name="professor" class="com.group.model.Professor" fetch="select">
+            <column name="professor_id" />
+        </many-to-one>
         <property name="name" type="java.lang.String">
             <column name="name" length="50" />
         </property>
-        <set name="classProjectRs" inverse="true">
-            <key>
-                <column name="class_id" />
-            </key>
-            <one-to-many class="com.group.model.ClassProjectR" />
-        </set>
-        <set name="professorClassRs" inverse="true">
-            <key>
-                <column name="class_id" />
-            </key>
-            <one-to-many class="com.group.model.ProfessorClassR" />
-        </set>
         <set name="classStudentRs" inverse="true">
             <key>
                 <column name="class_id" />
             </key>
             <one-to-many class="com.group.model.ClassStudentR" />
+        </set>
+        <set name="projects" inverse="true">
+            <key>
+                <column name="class_id" />
+            </key>
+            <one-to-many class="com.group.model.Project" />
         </set>
     </class>
 </hibernate-mapping>

@@ -18,18 +18,17 @@
 		<property name="connection.driver_class">
 			com.mysql.jdbc.Driver
 		</property>
-		<mapping resource="com/group/dataset/Professor.hbm.xml" />
-		<mapping resource="com/group/dataset/Class.hbm.xml" />
-		<mapping resource="com/group/dataset/ProjectSkillR.hbm.xml" />
-		<mapping resource="com/group/dataset/ClassProjectR.hbm.xml" />
-		<mapping resource="com/group/dataset/ProfessorClassR.hbm.xml" />
-		<mapping resource="com/group/dataset/Student.hbm.xml" />
-		<mapping resource="com/group/dataset/Skill.hbm.xml" />
+		<property name="hibernate.show_sql">true</property>
 		<mapping resource="com/group/dataset/Group.hbm.xml" />
-		<mapping resource="com/group/dataset/ClassStudentR.hbm.xml" />
-		<mapping resource="com/group/dataset/Project.hbm.xml" />
-		<mapping resource="com/group/dataset/StudentSkillR.hbm.xml" />
+		<mapping resource="com/group/dataset/Student.hbm.xml" />
 		<mapping resource="com/group/dataset/GroupStudentR.hbm.xml" />
+		<mapping resource="com/group/dataset/Class.hbm.xml" />
+		<mapping resource="com/group/dataset/Skill.hbm.xml" />
+		<mapping resource="com/group/dataset/StudentSkillR.hbm.xml" />
+		<mapping resource="com/group/dataset/Professor.hbm.xml" />
+		<mapping resource="com/group/dataset/Project.hbm.xml" />
+		<mapping resource="com/group/dataset/ClassStudentR.hbm.xml" />
+		<mapping resource="com/group/dataset/ProjectSkillR.hbm.xml" />
 
 	</session-factory>
 

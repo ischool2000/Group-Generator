@@ -15,14 +15,19 @@ public class ProfessorHelper {
 		
 	}
 	
-	public Boolean isMatch(String username, String passwood){
+	public Boolean isMatch(String username, String password){
+		System.out.println("isMatch: username " + username + " password" + password);
 		List proList = professorDAO.findByUsername(username);
-		if(proList.isEmpty())
+		if(proList.isEmpty()){
+			System.out.println("no user");
 			return false;
-		else{
+		}else{
 			Professor professor = (Professor)proList.get(0);
-			if(professor.getPassword().equals(professor))
+			if(professor.getPassword().equals(password)){
+				System.out.println(professor.getPassword());
 				return true;
+			}
+				
 			else return false;
 		}
 	}

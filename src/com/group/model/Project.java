@@ -14,6 +14,7 @@ public class Project  implements java.io.Serializable {
     // Fields    
 
      private Integer projectId;
+     private Class classes;
      private String name;
      private Integer groupSize;
      private Integer groupNumber;
@@ -22,7 +23,6 @@ public class Project  implements java.io.Serializable {
      private Integer reportType;
      private Set groups = new HashSet(0);
      private Set projectSkillRs = new HashSet(0);
-     private Set classProjectRs = new HashSet(0);
 
 
     // Constructors
@@ -31,14 +31,10 @@ public class Project  implements java.io.Serializable {
     public Project() {
     }
 
-	/** minimal constructor */
-    public Project(Integer projectId) {
-        this.projectId = projectId;
-    }
     
     /** full constructor */
-    public Project(Integer projectId, String name, Integer groupSize, Integer groupNumber, String url, Integer algorithm, Integer reportType, Set groups, Set projectSkillRs, Set classProjectRs) {
-        this.projectId = projectId;
+    public Project(Class classes, String name, Integer groupSize, Integer groupNumber, String url, Integer algorithm, Integer reportType, Set groups, Set projectSkillRs) {
+        this.classes = classes;
         this.name = name;
         this.groupSize = groupSize;
         this.groupNumber = groupNumber;
@@ -47,7 +43,6 @@ public class Project  implements java.io.Serializable {
         this.reportType = reportType;
         this.groups = groups;
         this.projectSkillRs = projectSkillRs;
-        this.classProjectRs = classProjectRs;
     }
 
    
@@ -59,6 +54,14 @@ public class Project  implements java.io.Serializable {
     
     public void setProjectId(Integer projectId) {
         this.projectId = projectId;
+    }
+
+    public Class getClasses() {
+        return this.classes;
+    }
+    
+    public void setClasses(Class classes) {
+        this.classes = classes;
     }
 
     public String getName() {
@@ -123,14 +126,6 @@ public class Project  implements java.io.Serializable {
     
     public void setProjectSkillRs(Set projectSkillRs) {
         this.projectSkillRs = projectSkillRs;
-    }
-
-    public Set getClassProjectRs() {
-        return this.classProjectRs;
-    }
-    
-    public void setClassProjectRs(Set classProjectRs) {
-        this.classProjectRs = classProjectRs;
     }
    
 

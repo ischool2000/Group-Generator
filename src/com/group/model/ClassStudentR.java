@@ -22,14 +22,9 @@ public class ClassStudentR  implements java.io.Serializable {
     public ClassStudentR() {
     }
 
-	/** minimal constructor */
-    public ClassStudentR(Integer id) {
-        this.id = id;
-    }
     
     /** full constructor */
-    public ClassStudentR(Integer id, Student student, Class classes) {
-        this.id = id;
+    public ClassStudentR(Student student, Class classes) {
         this.student = student;
         this.classes = classes;
     }

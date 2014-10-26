@@ -3,82 +3,64 @@ package com.group.model;
 import java.util.HashSet;
 import java.util.Set;
 
-
 /**
  * Group entity. @author MyEclipse Persistence Tools
  */
 
-public class Group  implements java.io.Serializable {
+public class Group implements java.io.Serializable {
 
+	// Fields
 
-    // Fields    
+	private Integer groupId;
+	private Project project;
+	private String name;
+	private Set groupStudentRs = new HashSet(0);
 
-     private Integer groupId;
-     private Project project;
-     private String name;
-     private Set groupStudentRs = new HashSet(0);
+	// Constructors
 
+	/** default constructor */
+	public Group() {
+	}
 
-    // Constructors
+	/** full constructor */
+	public Group(Project project, String name, Set groupStudentRs) {
+		this.project = project;
+		this.name = name;
+		this.groupStudentRs = groupStudentRs;
+	}
 
-    /** default constructor */
-    public Group() {
-    }
+	// Property accessors
 
-	/** minimal constructor */
-    public Group(Integer groupId) {
-        this.groupId = groupId;
-    }
-    
-    /** full constructor */
-    public Group(Integer groupId, Project project, String name, Set groupStudentRs) {
-        this.groupId = groupId;
-        this.project = project;
-        this.name = name;
-        this.groupStudentRs = groupStudentRs;
-    }
+	public Integer getGroupId() {
+		return this.groupId;
+	}
 
-   
-    // Property accessors
+	public void setGroupId(Integer groupId) {
+		this.groupId = groupId;
+	}
 
-    public Integer getGroupId() {
-        return this.groupId;
-    }
-    
-    public void setGroupId(Integer groupId) {
-        this.groupId = groupId;
-    }
+	public Project getProject() {
+		return this.project;
+	}
 
-    public Project getProject() {
-        return this.project;
-    }
-    
-    public void setProject(Project project) {
-        this.project = project;
-    }
+	public void setProject(Project project) {
+		this.project = project;
+	}
 
-    public String getName() {
-        return this.name;
-    }
-    
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return this.name;
+	}
 
-    public Set getGroupStudentRs() {
-        return this.groupStudentRs;
-    }
-    
-    public void setGroupStudentRs(Set groupStudentRs) {
-        this.groupStudentRs = groupStudentRs;
-    }
-   
+	public void setName(String name) {
+		this.name = name;
+	}
 
+	public Set getGroupStudentRs() {
+		return this.groupStudentRs;
+	}
 
-
-
-
-
-
+	public void setGroupStudentRs(Set groupStudentRs) {
+		this.groupStudentRs = groupStudentRs;
+	}
 
 }

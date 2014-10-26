@@ -36,8 +36,8 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String name = (String) request.getAttribute("username");
-		String pwd  = (String) request.getAttribute("password");
+		String name = (String) request.getParameter("username");
+		String pwd  = (String) request.getParameter("password");
 		
 		Boolean isMatch = professorHelper.isMatch(name, pwd);
 		

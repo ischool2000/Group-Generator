@@ -8,8 +8,11 @@
     <class name="com.group.model.Project" table="Project" catalog="group_gen">
         <id name="projectId" type="java.lang.Integer">
             <column name="project_id" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
+        <many-to-one name="classes" class="com.group.model.Class" fetch="select">
+            <column name="class_id" />
+        </many-to-one>
         <property name="name" type="java.lang.String">
             <column name="name" length="50" />
         </property>
@@ -39,12 +42,6 @@
                 <column name="project_id" />
             </key>
             <one-to-many class="com.group.model.ProjectSkillR" />
-        </set>
-        <set name="classProjectRs" inverse="true">
-            <key>
-                <column name="project_id" />
-            </key>
-            <one-to-many class="com.group.model.ClassProjectR" />
         </set>
     </class>
 </hibernate-mapping>

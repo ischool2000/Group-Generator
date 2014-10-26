@@ -8,7 +8,7 @@
     <class name="com.group.model.Group" table="Group" catalog="group_gen">
         <id name="groupId" type="java.lang.Integer">
             <column name="group_id" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="project" class="com.group.model.Project" fetch="select">
             <column name="project_id" />
