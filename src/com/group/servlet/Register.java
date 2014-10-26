@@ -52,10 +52,10 @@ public class Register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = (String) request.getAttribute("username");
-		String email = (String) request.getAttribute("email");
-		String password = (String) request.getAttribute("password");
-		String name = (String) request.getAttribute("name");
+		String username = (String) request.getParameter("username");
+		String email = (String) request.getParameter("email");
+		String password = (String) request.getParameter("password");
+		String name = (String) request.getParameter("name");
 		
 		Boolean flag = professorHelper.addProssor(username, name, password, email);
 		JSONObject object = new JSONObject();

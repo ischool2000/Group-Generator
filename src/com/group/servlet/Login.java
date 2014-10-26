@@ -66,8 +66,8 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated method stub
 		//Professor professor = professorHelper.getRandomOne();
 		
-		String name = (String) request.getAttribute("username");
-		String pwd  = (String) request.getAttribute("password");
+		String name = (String) request.getParameter("username");
+		String pwd  = (String) request.getParameter("password");
 		
 		Boolean isMatch = professorHelper.isMatch(name, pwd);
 		
