@@ -10,22 +10,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONObject;
 
-import com.group.datahelper.ProfessorHelper;
-import com.group.model.Professor;
+import com.group.datahelper.ClassHelper;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class Create_Class
  */
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/Create_Class")
+public class Create_Class extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private ProfessorHelper professorHelper = new ProfessorHelper();
+	private ClassHelper classHelper = new ClassHelper();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public Create_Class() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,28 +34,18 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		String name = (String) request.getAttribute("username");
-		String pwd  = (String) request.getAttribute("password");
-		
-		Boolean isMatch = professorHelper.isMatch(name, pwd);
+		String class_name = (String) request.getAttribute("name");
+		int prof_id = (Integer) request.getAttribute("professorId");
+		Boolean flag = classHelper.createClass(prof_id,class_name);
 		
 		JSONObject object = new JSONObject();
+		object.element("flag", flag);
 		
-		if(isMatch){						
-			object.element("isMatch", "true");
-		}else{
-			object.element("isMatch", "false");
-		}
-				
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("Cache-Control", "no-cache");
 		
 		response.getWriter().write(object.toString());
-	
-
-		
 	}
 
 	/**
@@ -64,26 +53,6 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//Professor professor = professorHelper.getRandomOne();
-		
-		String name = (String) request.getAttribute("username");
-		String pwd  = (String) request.getAttribute("password");
-		
-		Boolean isMatch = professorHelper.isMatch(name, pwd);
-		
-		JSONObject object = new JSONObject();
-		
-		if(isMatch){						
-			object.element("isMatch", "true");
-		}else{
-			object.element("isMatch", "false");
-		}
-				
-		response.setContentType("text/json");
-		response.setCharacterEncoding("UTF-8");
-		response.setHeader("Cache-Control", "no-cache");
-		
-		response.getWriter().write(object.toString());
 	}
 
 }
