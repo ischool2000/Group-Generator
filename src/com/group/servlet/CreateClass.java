@@ -16,7 +16,7 @@ import com.group.datahelper.ClassHelper;
  * Servlet implementation class Create_Class
  */
 @WebServlet("/Create_Class")
-public class Create_Class extends HttpServlet {
+public class CreateClass extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private ClassHelper classHelper = new ClassHelper();
@@ -24,7 +24,7 @@ public class Create_Class extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Create_Class() {
+    public CreateClass() {
         super();
         // TODO Auto-generated constructor stub
     }
