@@ -26,14 +26,16 @@ public class ClassDAO extends BaseHibernateDAO {
 	// property constants
 	public static final String NAME = "name";
 
-	public void save(Class transientInstance) throws RuntimeException{
+	public void save(com.group.model.Class classes) throws RuntimeException{
 		Transaction tx = getSession().beginTransaction();
 		log.debug("saving Class instance");
 		
-			getSession().save(transientInstance);
-			//getSession().flush();
+			getSession().save(classes);
+			
 			log.debug("save successful");
 		tx.commit();
+		getSession().flush();
+		getSession().close();
 	}
 
 	public void delete(Class persistentInstance) {

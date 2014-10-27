@@ -34,8 +34,8 @@ public class CreateClass extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String class_name = (String) request.getAttribute("name");
-		int prof_id = (Integer) request.getAttribute("professorId");
+		String class_name = (String) request.getParameter("name");
+		int prof_id = (Integer) request.getSession().getAttribute("professorId");
 		Boolean flag = classHelper.createClass(prof_id,class_name);
 		
 		JSONObject object = new JSONObject();

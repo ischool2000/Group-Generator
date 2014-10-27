@@ -40,16 +40,21 @@ public class Login extends HttpServlet {
 		String pwd  = (String) request.getParameter("password");
 		
 		Professor professor = professorHelper.getProfessor(name);
-		
-		Boolean isMatch = professor.getPassword().equals(pwd);
-		
 		JSONObject object = new JSONObject();
-		if(isMatch){
-			request.getSession().setAttribute("professorId", professor.getProfessorId());	
-			object.element("isMatch", "true");
+		if(professor != null){
+			
+			Boolean isMatch = professor.getPassword().equals(pwd);
+			if(isMatch){
+				request.getSession().setAttribute("professorId", professor.getProfessorId());	
+				object.element("isMatch", "true");
+			}else{
+				object.element("isMatch", "false");
+			}
 		}else{
 			object.element("isMatch", "false");
 		}
+			
+		
 		
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");

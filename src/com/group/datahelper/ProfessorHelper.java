@@ -55,8 +55,11 @@ public class ProfessorHelper {
 		
 	}
 
-	public Professor getProfessor(String name) {
+	public Professor getProfessor(String username) {
 		// TODO Auto-generated method stub
-		return (Professor) professorDAO.findByUsername(name).get(0);
+		List proList = professorDAO.findByUsername(username);
+		if(proList.isEmpty())
+			return null;
+		return (Professor) proList.get(0);
 	}
 }

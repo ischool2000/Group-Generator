@@ -13,8 +13,16 @@ public class ClassHelper {
 		
 		Class classes = new Class();
 		classes.setName(name);
+		classes.setProfessor(professor);
 		
-		return null;
+		try{
+			classDAO.save(classes);
+		}catch(RuntimeException e){
+			e.printStackTrace();
+			return false;
+		}
+	
+		return true;
 	}
 
 }
