@@ -43,7 +43,8 @@ public class CreateProject extends HttpServlet {
 	    int reportType = Integer.parseInt(request.getParameter("reportType"));
 	    String studentSkillRs = (String) request.getParameter("studentSkillRs");
 	    int professorId = Integer.parseInt(request.getParameter("professorId"));
-
+        int group_id = Integer.parseInt(request.getParameter("group_id"));
+        
         Boolean flag = classHelper.createProject(name, groupSize, url, algorithm, reportType, studentSkillRs, professorId);
 		
 		JSONObject object = new JSONObject();
