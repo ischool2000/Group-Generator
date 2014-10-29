@@ -36,8 +36,9 @@ public class Student extends HttpServlet {
 		String email = (String) request.getParameter("email");
 		String validate = (String) request.getParameter("validate");
 		String gender = (String) request.getParameter("gender");
-		
-		Boolean flag = professorHelper.addProssor(name, studentId, validate, email, gender);
+		String skill = (String)request.getParameter("skill");
+		 
+		Boolean flag = professorHelper.addProssor(name, studentId, validate, email, gender, skill);
 		JSONObject object = new JSONObject();
 		object.element("flag", flag);
 		
