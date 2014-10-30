@@ -36,7 +36,8 @@ public class CreateProject extends HttpServlet {
 	
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String name = (String) request.getParameter("name");
+		String classes = (String) request.getParameter("classes");
+    	String name = (String) request.getParameter("name");
 	    int groupSize = Integer.parseInt(request.getParameter("groupSize"));
 	    String url =  (String) request.getParameter("url");
 	    int algorithm = Integer.parseInt(request.getParameter("algorithm"));
@@ -45,7 +46,7 @@ public class CreateProject extends HttpServlet {
 	    int professorId = Integer.parseInt(request.getParameter("professorId"));
         int group_id = Integer.parseInt(request.getParameter("group_id"));
         
-        Boolean flag = classHelper.createProject(name, groupSize, url, algorithm, reportType, studentSkillRs, professorId);
+        Boolean flag = classHelper.createProject(classes, name, groupSize, url, algorithm, reportType, studentSkillRs, professorId);
 		
 		JSONObject object = new JSONObject();
 		object.element("flag", flag);
