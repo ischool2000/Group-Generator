@@ -1,7 +1,10 @@
 package com.group.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,19 +37,22 @@ public class CreateProject extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List projectList = projectHelper.getAllProject();
-		// TODO Auto-generated method stub
-		JSONArray array = new JSONArray();
-    	for(int i = 0;i < projectList.size();i++){
-    		Project project = (Project) projectList.get(i);
-    		JSONObject projectObject = new JSONObject();
-    		projectObject.element("name", project.getName());
-    		projectObject.element("gender", project.getGender());
-    		projectObject.element("email", project.getEmail());
-    		array.add(projectObject);
-    	}
-        
-
+		String name = request.getParameter("name");
+		int groupSize = Integer.parseInt(request.getParameter("groupSize"));
+		String jsonObject = request.getParameter("skillArray");
+		
+		JSONArray skillArray = new JSONArray();
+		skillArray.fromObject(jsonObject);
+		
+		List<Integer> skillList = new ArrayList();
+		for(int i = 0;i < skillArray.size();i++){
+			JSONObject skillObject = (JSONObject) skillArray.get(i);
+			skillList.add(skillObject.getInt("skillId"));
+		}
+		
+		boolean flag =  projectHelper.createProject(name, groupSize,skillList);
+		JSONObject object = new JSONObject();
+		object.element("flag", flag);
 		
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");

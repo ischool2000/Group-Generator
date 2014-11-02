@@ -47,6 +47,11 @@ public class StudentHelper {
 		return studentList.get(0);
 	}
 
+	public List getStudentbyGroupList(List<List<Integer>> list) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 }

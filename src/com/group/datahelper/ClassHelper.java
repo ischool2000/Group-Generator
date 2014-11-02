@@ -1,5 +1,7 @@
 package com.group.datahelper;
 
+import java.util.ArrayList;
+
 import com.group.DAO.ClassDAO;
 import com.group.model.Professor;
 import com.group.model.Class;
@@ -36,5 +38,10 @@ public class ClassHelper {
 		project.setReportType(reportType);
 		return true;
 	}
+	public ArrayList<Integer> getStudentIdListbyClassId(int classId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 }
