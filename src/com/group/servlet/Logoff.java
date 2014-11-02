@@ -31,7 +31,6 @@ public class Logoff extends HttpServlet {
 		response.setHeader("Cache-Control", "no-cache, no-store");
 		response.setHeader("Pragma", "no-cache");
 
-		
 		request.getSession().invalidate();
     	response.sendRedirect(request.getContextPath() + "/login.jsp");
 	}
