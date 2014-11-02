@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import com.group.datahelper.SkillHelper;
+import com.group.model.Skill;
 /**
  * Servlet implementation class AddProject
  */
@@ -31,7 +35,23 @@ public class AddProject extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		List skillList = skillHelper.getAllSkill();
+		// TODO Auto-generated method stub
+		JSONArray array = new JSONArray();
+    	for(int i = 0;i < skillList.size();i++){
+    		Skill skill = (Skill) skillList.get(i);
+    		JSONObject skillObject = new JSONObject();
+    		skillObject.element("skillId", skill.getSkillId());
+    		skillObject.element("name", skill.getName());
+    		array.add(skillObject);
+    	}
+        
 		
+		
+		response.setContentType("text/json");
+		response.setCharacterEncoding("UTF-8");
+		response.setHeader("Cache-Control", "no-cache");
+		
+		response.getWriter().write(array.toString());
 	}
 
 	/**
@@ -42,3 +62,5 @@ public class AddProject extends HttpServlet {
 	}
 
 }
+
+  
