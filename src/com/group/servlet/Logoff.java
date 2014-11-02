@@ -36,10 +36,12 @@ public class Logoff extends HttpServlet {
 		JSONObject object = new JSONObject();
 		object.element("flag", flag);
 		
-		response.setHeader("Cache-Control", "no-cache, no-store");
-		response.setHeader("Pragma", "no-cache");
 	    request.getSession().invalidate();
-    	response.sendRedirect(request.getContextPath() + "/login.jsp");
+		
+		response.setContentType("text/json");
+		response.setCharacterEncoding("UTF-8");
+		response.setHeader("Cache-Control", "no-cache");
+	    response.getWriter().write(object.toString());
 	}
 
 	/**
@@ -47,6 +49,7 @@ public class Logoff extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 	}
 
 }
