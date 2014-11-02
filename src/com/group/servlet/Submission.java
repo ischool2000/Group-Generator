@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import com.group.datahelper.StudentHelper;
@@ -41,7 +42,10 @@ public class Submission extends HttpServlet {
 		Short gender  = Short.parseShort(request.getParameter("gender"));
 		int projectId = Integer.parseInt(request.getParameter("projectId"));
 		
-		
+		String skillSet = (String)request.getParameter("skillSet");
+		JSONArray skillArray = new JSONArray();
+		skillArray.fromObject(skillSet);
+				
 		Professor professor = professorHelper.getProfessor(name);
 		JSONObject object = new JSONObject();
 		if(professor != null){
