@@ -10,22 +10,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONObject;
 
-import com.group.datahelper.ProfessorHelper;
-import com.group.model.Professor;
+import com.group.datahelper.StudentHelper;
+import com.group.model.Student;
+import com.group.model.ClassStudentR;
+
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class Submission
  */
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/Submission")
+public class Submission extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private ProfessorHelper professorHelper = new ProfessorHelper();
-       
+	private StudentHelper studentHelper = new StudentHelper();   
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public Submission() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,10 +35,12 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String name = (String) request.getParameter("name");
+		String email  = (String) request.getParameter("email");
+		String validate  = (String) request.getParameter("validate");
+		Short gender  = Short.parseShort(request.getParameter("gender"));
+		int projectId = Integer.parseInt(request.getParameter("projectId"));
 		
-		String name = (String) request.getParameter("username");
-		String pwd  = (String) request.getParameter("password");
 		
 		Professor professor = professorHelper.getProfessor(name);
 		JSONObject object = new JSONObject();
@@ -61,9 +64,6 @@ public class Login extends HttpServlet {
 		response.setHeader("Cache-Control", "no-cache");
 		
 		response.getWriter().write(object.toString());
-	
-
-		
 	}
 
 	/**
@@ -71,29 +71,6 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		
-		String name = (String) request.getParameter("username");
-		String pwd  = (String) request.getParameter("password");
-		
-		Professor professor = professorHelper.getProfessor(name);
-		
-		Boolean isMatch = professor.getPassword().equals(pwd);
-		
-		JSONObject object = new JSONObject();
-		if(isMatch){
-			request.getSession().setAttribute("professorId", professor.getProfessorId());
-			request.getSession().setAttribute("name", professor.getName());	
-			object.element("isMatch", "true");
-		}else{
-			object.element("isMatch", "false");
-		}
-		
-		response.setContentType("text/json");
-		response.setCharacterEncoding("UTF-8");
-		response.setHeader("Cache-Control", "no-cache");
-		
-		response.getWriter().write(object.toString());
 	}
 
 }
