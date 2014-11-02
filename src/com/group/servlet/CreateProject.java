@@ -17,7 +17,7 @@ import com.group.model.Project;
 /**
  * Servlet implementation class Register
  */
-@WebServlet("/Student")
+@WebServlet("/CreateProject")
 public class CreateProject extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private ProjectHelper projectHelper = new ProjectHelper();   
