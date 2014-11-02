@@ -1,6 +1,8 @@
 package com.group.servlet;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,21 +47,17 @@ public class Submission extends HttpServlet {
 		String skillSet = (String)request.getParameter("skillSet");
 		JSONArray skillArray = new JSONArray();
 		skillArray.fromObject(skillSet);
-				
-		Professor professor = professorHelper.getProfessor(name);
-		JSONObject object = new JSONObject();
-		if(professor != null){
-			
-			Boolean isMatch = professor.getPassword().equals(pwd);
-			if(isMatch){
-				request.getSession().setAttribute("professorId", professor.getProfessorId());	
-				object.element("isMatch", "true");
-			}else{
-				object.element("isMatch", "false");
-			}
-		}else{
-			object.element("isMatch", "false");
+		Map<Integer, String> map = new HashMap<Integer, String>();
+		
+		for(int i; i < skillArray.size(); i++){
+			JSONObject skillObject = (JSONObject) skillArray.get(i);
+			map.put(skillObject.getInt("skillId"), skillObject.getString("scale"));
 		}
+		
+		
+		boolean flag = studentHelper.addStudent(name, email, validate, gender, projectId, map); 		
+		JSONObject object = new JSONObject();
+		object.element("flag", flag);
 			
 		
 		
