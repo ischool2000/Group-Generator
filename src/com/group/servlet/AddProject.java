@@ -36,22 +36,36 @@ public class AddProject extends HttpServlet {
 		// TODO Auto-generated method stub
 		List skillList = skillHelper.getAllSkill();
 		// TODO Auto-generated method stub
-		JSONArray array = new JSONArray();
+		JSONArray skillArray = new JSONArray();
     	for(int i = 0;i < skillList.size();i++){
     		Skill skill = (Skill) skillList.get(i);
     		JSONObject skillObject = new JSONObject();
     		skillObject.element("skillId", skill.getSkillId());
     		skillObject.element("name", skill.getName());
-    		array.add(skillObject);
+    		skillArray.add(skillObject);
     	}
         
+		JSONArray itemArray = new JSONArray();
+		JSONObject itemObject = new JSONObject();
 		
+		itemObject.element("item", "name");
+		itemArray.add(itemObject);
+		itemObject = new JSONObject();
+		itemObject.element("item", "gender");
+		itemArray.add(itemObject);
+		itemObject = new JSONObject();
+		itemObject.element("item", "email");
+		itemArray.add(itemObject);
+
+		JSONObject object = new JSONObject();
+		object.element("skillArray", skillArray);
+		object.element("itemArray", itemArray);
 		
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("Cache-Control", "no-cache");
 		
-		response.getWriter().write(array.toString());
+		response.getWriter().write(object.toString());
 	}
 
 	/**

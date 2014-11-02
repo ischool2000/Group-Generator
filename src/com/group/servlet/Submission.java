@@ -49,7 +49,7 @@ public class Submission extends HttpServlet {
 		skillArray.fromObject(skillSet);
 		Map<Integer, String> map = new HashMap<Integer, String>();
 		
-		for(int i; i < skillArray.size(); i++){
+		for(int i = 0; i < skillArray.size(); i++){
 			JSONObject skillObject = (JSONObject) skillArray.get(i);
 			map.put(skillObject.getInt("skillId"), skillObject.getString("scale"));
 		}
