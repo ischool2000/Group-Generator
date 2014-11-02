@@ -41,7 +41,7 @@ public class CreateProject extends HttpServlet {
     		Project project = (Project) projectList.get(i);
     		JSONObject projectObject = new JSONObject();
     		projectObject.element("name", project.getName());
-    		projectObject.element("gender", project.Gender());
+    		projectObject.element("gender", project.getGender());
     		projectObject.element("email", project.getEmail());
     		array.add(projectObject);
     	}
