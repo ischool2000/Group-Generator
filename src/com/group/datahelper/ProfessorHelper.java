@@ -1,14 +1,17 @@
 package com.group.datahelper;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import com.group.DAO.ClassDAO;
 import com.group.DAO.ProfessorDAO;
 import com.group.model.Professor;
-
+import com.group.model.Class;
 public class ProfessorHelper {
 	
 	ProfessorDAO professorDAO = new ProfessorDAO();
-	
+	ClassDAO classDAO = new ClassDAO();
 	public Professor getRandomOne(){
 		Professor professor = (Professor) professorDAO.findAll().get(0);
 		return professor;
@@ -61,5 +64,16 @@ public class ProfessorHelper {
 		if(proList.isEmpty())
 			return null;
 		return (Professor) proList.get(0);
+	}
+
+	public List getClasses(int profId) {
+		// TODO Auto-generated method stub
+		Professor professor = professorDAO.findById(profId);
+		Set<Class> set = professor.getClasses();
+		List classesList = new ArrayList<Class>();
+		for(Class classes : set){
+			classesList.add(classes);
+		}
+		return classesList;
 	}
 }

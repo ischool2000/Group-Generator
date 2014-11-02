@@ -20,7 +20,7 @@ import com.group.model.Professor;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.group.DAO.Professor
+ * @see com.group.model.Professor
  * @author MyEclipse Persistence Tools
  */
 public class ProfessorDAO extends BaseHibernateDAO {
@@ -57,7 +57,7 @@ public class ProfessorDAO extends BaseHibernateDAO {
 		log.debug("getting Professor instance with id: " + id);
 		try {
 			Professor instance = (Professor) getSession().get(
-					"com.group.DAO.Professor", id);
+					"com.group.model.Professor", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -69,7 +69,7 @@ public class ProfessorDAO extends BaseHibernateDAO {
 		log.debug("finding Professor instance by example");
 		try {
 			List results = getSession()
-					.createCriteria("com.group.DAO.Professor")
+					.createCriteria("com.group.model.Professor")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
