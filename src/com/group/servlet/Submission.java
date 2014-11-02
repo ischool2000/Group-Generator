@@ -43,21 +43,33 @@ public class Submission extends HttpServlet {
 		String validate  = (String) request.getParameter("validate");
 		Short gender  = Short.parseShort(request.getParameter("gender"));
 		int projectId = Integer.parseInt(request.getParameter("projectId"));
-		
 		String skillSet = (String)request.getParameter("skillSet");
 		JSONArray skillArray = new JSONArray();
 		skillArray.fromObject(skillSet);
 		Map<Integer, String> map = new HashMap<Integer, String>();
 		
-		for(int i = 0; i < skillArray.size(); i++){
+		for(int i; i < skillArray.size(); i++){
 			JSONObject skillObject = (JSONObject) skillArray.get(i);
 			map.put(skillObject.getInt("skillId"), skillObject.getString("scale"));
 		}
 		
-		
-		boolean flag = studentHelper.addStudent(name, email, validate, gender, projectId, map); 		
 		JSONObject object = new JSONObject();
-		object.element("flag", flag);
+		
+		Student student = studentHelper.getStudentByEmail(email);
+
+		if(student != null){
+			if((student.getValidate().equals(validate))&&(student.getName().equals(name))){
+				boolean flag = studentHelper.addStudent(student.getStudentId(), map);
+				object.element("flag", flag);
+			}
+			else{
+				object.element("flag", "false");
+			}
+		}
+		else{
+			object.element("flag", "false");
+		}
+
 			
 		
 		
