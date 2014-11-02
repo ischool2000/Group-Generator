@@ -41,7 +41,8 @@ public class Logoff extends HttpServlet {
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("Cache-Control", "no-cache");
-	    response.getWriter().write(object.toString());
+	    
+		response.getWriter().write(object.toString());
 	}
 
 	/**
