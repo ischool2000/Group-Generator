@@ -46,11 +46,11 @@ public class Submission extends HttpServlet {
 		String skillSet = (String)request.getParameter("skillSet");
 		JSONArray skillArray = new JSONArray();
 		skillArray.fromObject(skillSet);
-		Map<Integer, String> map = new HashMap<Integer, String>();
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 		
-		for(int i; i < skillArray.size(); i++){
+		for(int i = 0; i < skillArray.size(); i++){
 			JSONObject skillObject = (JSONObject) skillArray.get(i);
-			map.put(skillObject.getInt("skillId"), skillObject.getString("scale"));
+			map.put(skillObject.getInt("skillId"), skillObject.getInt("scale"));
 		}
 		
 		JSONObject object = new JSONObject();
