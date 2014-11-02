@@ -32,13 +32,12 @@ public class Logoff extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response, Object professorHelper) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		response.setHeader("Cache-Control", "no-cache, no-store");
-		response.setHeader("Pragma", "no-cache");
-		
 		Boolean flag = true;
 		JSONObject object = new JSONObject();
 		object.element("flag", flag);
 		
+		response.setHeader("Cache-Control", "no-cache, no-store");
+		response.setHeader("Pragma", "no-cache");
 	    request.getSession().invalidate();
     	response.sendRedirect(request.getContextPath() + "/login.jsp");
 	}
