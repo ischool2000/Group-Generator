@@ -6,6 +6,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
 
 import com.group.model.StudentSkillR;
@@ -27,14 +28,12 @@ public class StudentSkillRDAO extends BaseHibernateDAO {
 	public static final String SCALE = "scale";
 
 	public void save(StudentSkillR transientInstance) {
-		log.debug("saving StudentSkillR instance");
-		try {
-			getSession().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
-		}
+		Transaction tx = getSession().beginTransaction();
+		getSession().save(transientInstance);
+		log.debug("save successful");
+		tx.commit();
+		getSession().flush();
+		getSession().close();
 	}
 
 	public void delete(StudentSkillR persistentInstance) {
