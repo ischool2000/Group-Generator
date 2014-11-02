@@ -12,15 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.group.datahelper.ClassHelper;
 
-import net.sf.json.JSONObject;
+import net.sf.json.JSONArray;
 
 /**
  * Servlet implementation class CreateProject
  */
-@WebServlet("/CreateProject")
+@WebServlet("/Create_Project")
 public class CreateProject extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static ClassHelper classHelper = new ClassHelper();   
+    
+	private static ClassHelper classHelper = new ClassHelper();   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -36,26 +37,19 @@ public class CreateProject extends HttpServlet {
 	
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String classes = (String) request.getParameter("classes");
     	String name = (String) request.getParameter("name");
-	    int groupSize = Integer.parseInt(request.getParameter("groupSize"));
-	    String url =  (String) request.getParameter("url");
-	    int algorithm = Integer.parseInt(request.getParameter("algorithm"));
-	    int reportType = Integer.parseInt(request.getParameter("reportType"));
-	    String studentSkillRs = (String) request.getParameter("studentSkillRs");
-	    int professorId = Integer.parseInt(request.getParameter("professorId"));
-        int group_id = Integer.parseInt(request.getParameter("group_id"));
+    	int skillId= (Integer) request.getSession().getAttribute("skillId");
         
-        Boolean flag = classHelper.createProject(classes, name, groupSize, url, algorithm, reportType, studentSkillRs, professorId, group_id);
+        Boolean flag = classHelper.createProject(name, skillId);
 		
-		JSONObject object = new JSONObject();
-		object.element("flag", flag);
+		JSONArray array = new JSONArray();
+		array.add(value);
 		
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("Cache-Control", "no-cache");
 		
-		response.getWriter().write(object.toString());
+		response.getWriter().write(array.toString());
 	}
 
 	/**
