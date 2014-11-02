@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import com.group.datahelper.SkillHelper;
-import com.group.model.Skill;
+import com.group.datahelper.ProjectHelper;
+import com.group.model.Project;
 /**
  * Servlet implementation class Register
  */
