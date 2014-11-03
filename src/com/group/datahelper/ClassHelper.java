@@ -27,17 +27,7 @@ public class ClassHelper {
 	
 		return true;
 	}
-	public Boolean createProject(int projectId, String name, int groupSize,
-			int groupNumber, String url, int algorithm, int reportType) {
-		// TODO Auto-generated method stub
-		Project project = new Project();
-		project.setName(name);
-		project.setGroupNumber(groupNumber);
-		project.setUrl(url);
-		project.setAlgorithm(algorithm);
-		project.setReportType(reportType);
-		return true;
-	}
+	
 	public ArrayList<Integer> getStudentIdListbyClassId(int classId) {
 		// TODO Auto-generated method stub
 		return null;
