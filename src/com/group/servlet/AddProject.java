@@ -45,7 +45,7 @@ public class AddProject extends HttpServlet {
     		skillArray.add(skillObject);
     	}
         
-		JSONArray itemArray = new JSONArray();
+    	/*JSONArray itemArray = new JSONArray();
 		JSONObject itemObject = new JSONObject();
 		
 		itemObject.element("item", "name");
@@ -59,13 +59,13 @@ public class AddProject extends HttpServlet {
 
 		JSONObject object = new JSONObject();
 		object.element("skillArray", skillArray);
-		object.element("itemArray", itemArray);
+		object.element("itemArray", itemArray);*/
 		
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("Cache-Control", "no-cache");
 		
-		response.getWriter().write(object.toString());
+		response.getWriter().write(skillArray.toString());
 	}
 
 	/**
