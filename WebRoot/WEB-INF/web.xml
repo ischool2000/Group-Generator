@@ -24,6 +24,13 @@
     <servlet-name>ViewStudentForm</servlet-name>
     <servlet-class>com.group.servlet.ViewStudentForm</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddSkill</servlet-name>
+    <servlet-class>com.group.servlet.AddSkill</servlet-class>
+  </servlet>
+
 
 
 
@@ -36,11 +43,11 @@
     <url-pattern>/ViewClass</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>UploadFile</servlet-name>
-    <url-pattern>/servlet/UploadFile</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
     <servlet-name>ViewStudentForm</servlet-name>
     <url-pattern>/ViewStudentForm</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddSkill</servlet-name>
+    <url-pattern>/AddSkill</url-pattern>
   </servlet-mapping>
 </web-app>

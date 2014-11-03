@@ -7,7 +7,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
+import org.w3c.dom.ranges.RangeException;
 
 import com.group.model.Skill;
 
@@ -27,15 +29,14 @@ public class SkillDAO extends BaseHibernateDAO {
 	// property constants
 	public static final String NAME = "name";
 
-	public void save(Skill transientInstance) {
+	public void save(Skill transientInstance) throws Exception{
 		log.debug("saving Skill instance");
-		try {
-			getSession().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
-		}
+		Transaction tx = getSession().beginTransaction();
+		getSession().save(transientInstance);
+		log.debug("save successful");
+		tx.commit();
+		getSession().flush();
+		getSession().close();
 	}
 
 	public void delete(Skill persistentInstance) {

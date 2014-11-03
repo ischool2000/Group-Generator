@@ -17,14 +17,14 @@ import com.group.model.Skill;
 /**
  * Servlet implementation class AddProject
  */
-@WebServlet("/AddProject")
-public class ViewSkills extends HttpServlet {
+@WebServlet("/ViewSkill")
+public class ViewSkill extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private SkillHelper skillHelper = new SkillHelper();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewSkills() {
+    public ViewSkill() {
         super();
         // TODO Auto-generated constructor stub
     }
