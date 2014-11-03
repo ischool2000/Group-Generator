@@ -43,5 +43,12 @@
             </key>
             <one-to-many class="com.group.model.ProjectSkillR" />
         </set>
+        
+        <set name="skills" table="Project_Skill_R"  lazy ="false" cascade ="none">
+
+            <key column="project_id"/>
+            <many-to-many class="com.group.model.Skill" column="skill_id" />
+        </set>
     </class>
+    
 </hibernate-mapping>

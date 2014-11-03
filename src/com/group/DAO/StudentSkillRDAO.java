@@ -19,7 +19,7 @@ import com.group.model.StudentSkillR;
  * transactions. Each of these methods provides additional information for how
  * to configure it for the desired type of transaction control.
  * 
- * @see com.group.DAO.StudentSkillR
+ * @see com.group.model.StudentSkillR
  * @author MyEclipse Persistence Tools
  */
 public class StudentSkillRDAO extends BaseHibernateDAO {
@@ -51,7 +51,7 @@ public class StudentSkillRDAO extends BaseHibernateDAO {
 		log.debug("getting StudentSkillR instance with id: " + id);
 		try {
 			StudentSkillR instance = (StudentSkillR) getSession().get(
-					"com.group.DAO.StudentSkillR", id);
+					"com.group.model.StudentSkillR", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -63,7 +63,7 @@ public class StudentSkillRDAO extends BaseHibernateDAO {
 		log.debug("finding StudentSkillR instance by example");
 		try {
 			List results = getSession()
-					.createCriteria("com.group.DAO.StudentSkillR")
+					.createCriteria("com.group.model.StudentSkillR")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());

@@ -9,7 +9,7 @@ import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
-
+import com.group.model.Class;
 /**
  * A data access object (DAO) providing persistence and search support for Class
  * entities. Transaction control of the save(), update() and delete() operations
@@ -18,7 +18,7 @@ import org.hibernate.criterion.Example;
  * provides additional information for how to configure it for the desired type
  * of transaction control.
  * 
- * @see com.group.DAO.Class
+ * @see com.group.model.Class
  * @author MyEclipse Persistence Tools
  */
 public class ClassDAO extends BaseHibernateDAO {
@@ -49,11 +49,11 @@ public class ClassDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public Class findById(java.lang.Integer id) {
+	public com.group.model.Class findById(java.lang.Integer id) {
 		log.debug("getting Class instance with id: " + id);
 		try {
 			Class instance = (Class) getSession()
-					.get("com.group.DAO.Class", id);
+					.get("com.group.model.Class", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -64,7 +64,7 @@ public class ClassDAO extends BaseHibernateDAO {
 	public List findByExample(Class instance) {
 		log.debug("finding Class instance by example");
 		try {
-			List results = getSession().createCriteria("com.group.DAO.Class")
+			List results = getSession().createCriteria("com.group.model.Class")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());

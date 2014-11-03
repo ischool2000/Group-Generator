@@ -23,7 +23,7 @@ public class Project  implements java.io.Serializable {
      private Integer reportType;
      private Set groups = new HashSet(0);
      private Set projectSkillRs = new HashSet(0);
-
+     private Set skills = new HashSet(0);
 
     // Constructors
 
@@ -127,6 +127,16 @@ public class Project  implements java.io.Serializable {
     public void setProjectSkillRs(Set projectSkillRs) {
         this.projectSkillRs = projectSkillRs;
     }
+
+
+	public Set getSkills() {
+		return skills;
+	}
+
+
+	public void setSkills(Set skills) {
+		this.skills = skills;
+	}
    
 
 

@@ -23,7 +23,8 @@ import com.group.model.Project;
 @WebServlet("/CreateProject")
 public class CreateProject extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private ProjectHelper projectHelper = new ProjectHelper();   
+    private ProjectHelper projectHelper = new ProjectHelper(); 
+    private static final String servlet = "/ViewStudentForm";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -37,22 +38,32 @@ public class CreateProject extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		int professorId = (Integer) request.getSession().getAttribute("professorId");
+		int classId = Integer.parseInt( request.getParameter("classId"));
 		String name = request.getParameter("name");
 		int groupSize = Integer.parseInt(request.getParameter("groupSize"));
 		String jsonObject = request.getParameter("skillArray");
 		
 		JSONArray skillArray = new JSONArray();
-		skillArray.fromObject(jsonObject);
+		skillArray = skillArray.fromObject(jsonObject);
 		
 		List<Integer> skillList = new ArrayList();
 		for(int i = 0;i < skillArray.size();i++){
 			JSONObject skillObject = (JSONObject) skillArray.get(i);
 			skillList.add(skillObject.getInt("skillId"));
 		}
-		
-		boolean flag =  projectHelper.createProject(name, groupSize,skillList);
+		String domain = request.getServerName() +  ":" + request.getServerPort() + request.getContextPath();
+		Project project =  projectHelper.createProject(professorId, classId, domain, servlet, name, groupSize, skillList);
 		JSONObject object = new JSONObject();
-		object.element("flag", flag);
+		if(project == null){
+			object.element("flag", "false");
+		}else{
+			object.element("name", project.getName());
+			object.element("url", project.getUrl());
+		}
+		
+		
+		
 		
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");

@@ -19,7 +19,7 @@ import com.group.model.Skill;
  * provides additional information for how to configure it for the desired type
  * of transaction control.
  * 
- * @see com.group.DAO.Skill
+ * @see com.group.model.Skill
  * @author MyEclipse Persistence Tools
  */
 public class SkillDAO extends BaseHibernateDAO {
@@ -53,7 +53,7 @@ public class SkillDAO extends BaseHibernateDAO {
 		log.debug("getting Skill instance with id: " + id);
 		try {
 			Skill instance = (Skill) getSession()
-					.get("com.group.DAO.Skill", id);
+					.get("com.group.model.Skill", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -64,7 +64,7 @@ public class SkillDAO extends BaseHibernateDAO {
 	public List findByExample(Skill instance) {
 		log.debug("finding Skill instance by example");
 		try {
-			List results = getSession().createCriteria("com.group.DAO.Skill")
+			List results = getSession().createCriteria("com.group.model.Skill")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());

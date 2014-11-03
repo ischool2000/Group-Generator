@@ -19,7 +19,7 @@ import com.group.model.Group;
  * provides additional information for how to configure it for the desired type
  * of transaction control.
  * 
- * @see com.group.DAO.Group
+ * @see com.group.model.Group
  * @author MyEclipse Persistence Tools
  */
 public class GroupDAO extends BaseHibernateDAO {
@@ -53,7 +53,7 @@ public class GroupDAO extends BaseHibernateDAO {
 		log.debug("getting Group instance with id: " + id);
 		try {
 			Group instance = (Group) getSession()
-					.get("com.group.DAO.Group", id);
+					.get("com.group.model.Group", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -64,7 +64,7 @@ public class GroupDAO extends BaseHibernateDAO {
 	public List findByExample(Group instance) {
 		log.debug("finding Group instance by example");
 		try {
-			List results = getSession().createCriteria("com.group.DAO.Group")
+			List results = getSession().createCriteria("com.group.model.Group")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());

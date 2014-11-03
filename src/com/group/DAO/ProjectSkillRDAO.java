@@ -19,7 +19,7 @@ import com.group.model.ProjectSkillR;
  * transactions. Each of these methods provides additional information for how
  * to configure it for the desired type of transaction control.
  * 
- * @see com.group.DAO.ProjectSkillR
+ * @see com.group.model.ProjectSkillR
  * @author MyEclipse Persistence Tools
  */
 public class ProjectSkillRDAO extends BaseHibernateDAO {
@@ -31,6 +31,7 @@ public class ProjectSkillRDAO extends BaseHibernateDAO {
 		log.debug("saving ProjectSkillR instance");
 		Transaction tx = getSession().beginTransaction();
 		getSession().save(transientInstance);
+		System.out.println("save successful ProjectSkillR");
 		log.debug("save successful");
 		tx.commit();
 		getSession().flush();
@@ -52,7 +53,7 @@ public class ProjectSkillRDAO extends BaseHibernateDAO {
 		log.debug("getting ProjectSkillR instance with id: " + id);
 		try {
 			ProjectSkillR instance = (ProjectSkillR) getSession().get(
-					"com.group.DAO.ProjectSkillR", id);
+					"com.group.model.ProjectSkillR", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -64,7 +65,7 @@ public class ProjectSkillRDAO extends BaseHibernateDAO {
 		log.debug("finding ProjectSkillR instance by example");
 		try {
 			List results = getSession()
-					.createCriteria("com.group.DAO.ProjectSkillR")
+					.createCriteria("com.group.model.ProjectSkillR")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());

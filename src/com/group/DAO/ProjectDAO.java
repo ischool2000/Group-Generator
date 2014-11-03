@@ -7,6 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
 
 import com.group.model.Project;
@@ -19,7 +20,7 @@ import com.group.model.Project;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.group.DAO.Project
+ * @see com.group.model.Project
  * @author MyEclipse Persistence Tools
  */
 public class ProjectDAO extends BaseHibernateDAO {
@@ -32,15 +33,24 @@ public class ProjectDAO extends BaseHibernateDAO {
 	public static final String ALGORITHM = "algorithm";
 	public static final String REPORT_TYPE = "reportType";
 
-	public void save(Project transientInstance) {
+	public void save(Project transientInstance) throws RuntimeException{
 		log.debug("saving Project instance");
-		try {
-			getSession().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
-		}
+		Transaction tx = getSession().beginTransaction();
+		getSession().save(transientInstance);
+		log.debug("save successful");
+		tx.commit();
+		getSession().flush();
+		getSession().close();
+	}
+	
+	public void update(Project transientInstance) throws RuntimeException{
+		log.debug("saving Project instance");
+		Transaction tx = getSession().beginTransaction();
+		getSession().update(transientInstance);
+		log.debug("save successful");
+		tx.commit();
+		getSession().flush();
+		getSession().close();
 	}
 
 	public void delete(Project persistentInstance) {
@@ -58,7 +68,7 @@ public class ProjectDAO extends BaseHibernateDAO {
 		log.debug("getting Project instance with id: " + id);
 		try {
 			Project instance = (Project) getSession().get(
-					"com.group.DAO.Project", id);
+					"com.group.model.Project", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -69,7 +79,7 @@ public class ProjectDAO extends BaseHibernateDAO {
 	public List findByExample(Project instance) {
 		log.debug("finding Project instance by example");
 		try {
-			List results = getSession().createCriteria("com.group.DAO.Project")
+			List results = getSession().createCriteria("com.group.model.Project")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
