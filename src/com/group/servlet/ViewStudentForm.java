@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -64,10 +65,12 @@ public class ViewStudentForm extends HttpServlet {
 				skillJson.element("name", skill.getName());
 				skillArray.add(skillJson);
 			}
-			request.getSession().setAttribute("id", project.getProjectId());
-			request.getSession().setAttribute("name", project.getName());
-			request.getSession().setAttribute("skillArray", skillArray);
-			response.sendRedirect("StudentForm.jsp");
+			request.setAttribute("id", project.getProjectId());
+			request.setAttribute("name", project.getName());
+			request.setAttribute("skillArray", skillArray);
+			RequestDispatcher rd=request.getRequestDispatcher("StudentForm.jsp");
+			rd.forward(request,response);
+			
 		}
 	}
 

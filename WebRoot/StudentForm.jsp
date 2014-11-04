@@ -12,9 +12,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <title>My JSP 'StudentForm.jsp' starting page</title>
     
 <script type="text/javascript">
- var skillArray = '<%=request.getSession().getAttribute("skillArray")%>' ;
- var name ='<%=request.getSession().getAttribute("name")%>';
- var id = '<%=request.getSession().getAttribute("id")%>';
+ var skillArray = '<%=request.getAttribute("skillArray")%>' ;
+ var name ='<%=request.getAttribute("name")%>';
+ var id = '<%=request.getAttribute("id")%>';
  
  // Just show the text, you can delete it at any time
  window.onload = function() {
@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-   <div id="show">?
+   <div id="show">
    </div> <br>
   </body>
 </html>
