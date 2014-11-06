@@ -21,9 +21,12 @@ public class JsonpFilter implements Filter{
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		response.getWriter().write("jsonp(");
-		chain.doFilter(request, response);
-		response.getWriter().write(");");
+		if(request.getParameter("callback") != null){
+			response.getWriter().write(request.getParameter("callback") + "(");
+			chain.doFilter(request, response);
+			response.getWriter().write(");");
+		}
+		
 	}
 
 	@Override
