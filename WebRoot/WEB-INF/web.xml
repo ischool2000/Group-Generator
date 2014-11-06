@@ -30,8 +30,11 @@
     <servlet-name>AddSkill</servlet-name>
     <servlet-class>com.group.servlet.AddSkill</servlet-class>
   </servlet>
-
-
+	<filter>  
+    	<filter-name>JsonpFilter</filter-name>  
+    	<filter-class>com.group.filter.JsonpFilter</filter-class>  
+	</filter>  
+  
 
 
   <servlet-mapping>
@@ -50,4 +53,11 @@
     <servlet-name>AddSkill</servlet-name>
     <url-pattern>/AddSkill</url-pattern>
   </servlet-mapping>
+  
+  <filter-mapping>  
+    <filter-name>JsonpFilter</filter-name>  
+    <url-pattern>/*</url-pattern>  
+  </filter-mapping> 
+
+  	
 </web-app>
