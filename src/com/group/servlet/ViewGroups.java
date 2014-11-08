@@ -3,6 +3,7 @@ package com.group.servlet;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,18 +45,20 @@ public class ViewGroups extends HttpServlet {
 		HashMap<Group, List<Student>> studentGroupList = groupHelper.getStudentGroupbyProjectId(projectId);
 		// TODO Auto-generated method stub
 		JSONObject StudentGroupObject = new JSONObject();
-    	for(int i = 0; i < studentGroupList.size();i++){
-    		JSONArray GroupArray = new JSONArray();
-    		List<Student> Students = studentGroupList.get(i);
-    		for(int j; j < Students.size(); j++){
-        		JSONObject studentObject = new JSONObject();
-	    		studentObject.element("name", Students.get(j).getName());
-	    		studentObject.element("email", Students.get(j).getEmail());
-	    		studentObject.element("gender", Students.get(j).getGender());
-        		GroupArray.add(studentObject);
-    		}
-    		StudentGroupObject.element("Group "+i, GroupArray);
-    	}
+        for(Map.Entry<Group, List<Student>> studentEntry : studentGroupList.entrySet()){
+        	JSONArray GroupArray = new JSONArray();
+            List<Student> Students = studentEntry.getValue();
+            for(int j; j < Students.size(); j++){
+            	JSONObject studentObject = new JSONObject();
+    	    	studentObject.element("name", Students.get(j).getName());
+    	    	studentObject.element("email", Students.get(j).getEmail());
+    	    	studentObject.element("gender", Students.get(j).getGender());
+            	GroupArray.add(studentObject);
+        	}
+            StudentGroupObject.element(studentEntry.getKey().getName(), GroupArray);
+        }
+
+        
     	JSONObject object = new JSONObject();
     	object.element("StudentGroupO", StudentGroupObject);
 
