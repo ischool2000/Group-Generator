@@ -60,7 +60,7 @@ public class ViewGroups extends HttpServlet {
 
         
     	JSONObject object = new JSONObject();
-    	object.element("StudentGroupO", StudentGroupObject);
+    	object.element("StudentGroup", StudentGroupObject);
 
 		
 		response.setContentType("text/json");
