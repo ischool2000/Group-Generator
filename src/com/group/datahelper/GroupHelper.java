@@ -20,12 +20,15 @@ public class GroupHelper {
 	private StudentDAO studentDAO = new StudentDAO();
 	private GroupStudentRDAO groupStudentRDAO = new GroupStudentRDAO();
 	private ProjectDAO projectDAO = new ProjectDAO();
-	public List<Student> createGroup(List<List<Integer>> list) {
+	public List<Student> createGroup(List<List<Integer>> list, int projectId) {
 		// TODO Auto-generated method stub
 		List<Student> studentList = new ArrayList<Student>();
 		for(int i = 0;i < list.size();i++){
+			
 			Group group = new Group();
-			group.setName(String.valueOf(i));
+			group.setName("Group " + (i + 1));
+			Project project = projectDAO.findById(projectId);
+			group.setProject(project);
 			groupDAO.save(group);
 			List<Integer> studentIdList = list.get(i);
 			for(Integer studentId : studentIdList){

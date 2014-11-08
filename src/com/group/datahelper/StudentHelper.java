@@ -4,15 +4,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.group.DAO.ClassDAO;
 import com.group.DAO.SkillDAO;
 import com.group.DAO.StudentDAO;
 import com.group.DAO.StudentSkillRDAO;
 import com.group.model.Skill;
 import com.group.model.Student;
 import com.group.model.StudentSkillR;
-
+import com.group.model.Class;
 public class StudentHelper {
-	
+	ClassDAO classDAO = new ClassDAO();
 	StudentDAO studentDAO = new StudentDAO();
 	SkillDAO skillDAO = new SkillDAO();
 	StudentSkillRDAO relationDAO = new StudentSkillRDAO();
@@ -52,6 +53,12 @@ public class StudentHelper {
 	public List createGroup(List<List<Integer>> list) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public boolean addStudent(List<Student> studentsList, int classId) {
+		// TODO Auto-generated method stub
+		Class classes = classDAO.findById(classId);
+		return false;
 	}
 
 
