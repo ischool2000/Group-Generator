@@ -59,7 +59,7 @@ public class Submission extends HttpServlet {
 
 		if(student != null){
 			if((student.getValidate().equals(validate))&&(student.getName().equals(name))){
-				boolean flag = studentHelper.addStudent(student.getStudentId(),gender, map);
+				boolean flag = studentHelper.addStudent(student.getStudentId(), gender, map);
 				object.element("flag", flag);
 			}
 			else{
