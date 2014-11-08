@@ -1,11 +1,21 @@
 package com.group.servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import com.group.datahelper.ClassHelper;
+import com.group.datahelper.GroupHelper;
+import com.group.model.Skill;
+import com.group.model.Student;
 
 /**
  * Servlet implementation class ViewGroups
@@ -13,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ViewGroups")
 public class ViewGroups extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    GroupHelper groupHelper = new GroupHelper();   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -27,6 +37,32 @@ public class ViewGroups extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		int projectId = Integer.parseInt(request.getParameter("projectId"));
+		List<List<Student>> studentGroupList = groupHelper.getStudentGroupbyProjectId(projectId);
+		// TODO Auto-generated method stub
+		JSONObject StudentGroupObject = new JSONObject();
+    	for(int i = 0; i < studentGroupList.size();i++){
+    		JSONArray GroupArray = new JSONArray();
+    		List<Student> Students = studentGroupList.get(i);
+    		for(int j; j < Students.size(); j++){
+        		JSONObject studentObject = new JSONObject();
+	    		studentObject.element("name", Students.get(j).getName());
+	    		studentObject.element("email", Students.get(j).getEmail());
+	    		studentObject.element("gender", Students.get(j).getGender());
+        		GroupArray.add(studentObject);
+    		}
+    		StudentGroupObject.element("Group "+i, GroupArray);
+    	}
+    	JSONObject object = new JSONObject();
+    	object.element("StudentGroupO", StudentGroupObject);
+
+		
+		response.setContentType("text/json");
+		response.setCharacterEncoding("UTF-8");
+		response.setHeader("Cache-Control", "no-cache");
+		
+		response.getWriter().write(object.toString());
 	}
 
 	/**
