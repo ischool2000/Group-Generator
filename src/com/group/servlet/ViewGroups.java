@@ -1,6 +1,7 @@
 package com.group.servlet;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,6 +17,7 @@ import com.group.datahelper.ClassHelper;
 import com.group.datahelper.GroupHelper;
 import com.group.model.Skill;
 import com.group.model.Student;
+import com.group.model.Group;
 
 /**
  * Servlet implementation class ViewGroups
@@ -39,7 +41,7 @@ public class ViewGroups extends HttpServlet {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		int projectId = Integer.parseInt(request.getParameter("projectId"));
-		List<List<Student>> studentGroupList = groupHelper.getStudentGroupbyProjectId(projectId);
+		HashMap<Group, List<Student>> studentGroupList = groupHelper.getStudentGroupbyProjectId(projectId);
 		// TODO Auto-generated method stub
 		JSONObject StudentGroupObject = new JSONObject();
     	for(int i = 0; i < studentGroupList.size();i++){
