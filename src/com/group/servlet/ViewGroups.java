@@ -48,7 +48,7 @@ public class ViewGroups extends HttpServlet {
         for(Map.Entry<Group, List<Student>> studentEntry : studentGroupList.entrySet()){
         	JSONArray GroupArray = new JSONArray();
             List<Student> Students = studentEntry.getValue();
-            for(int j; j < Students.size(); j++){
+            for(int j=0; j < Students.size(); j++){
             	JSONObject studentObject = new JSONObject();
     	    	studentObject.element("name", Students.get(j).getName());
     	    	studentObject.element("email", Students.get(j).getEmail());
