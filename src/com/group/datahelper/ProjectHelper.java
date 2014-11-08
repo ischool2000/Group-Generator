@@ -1,6 +1,8 @@
 package com.group.datahelper;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import com.group.DAO.ClassDAO;
 import com.group.DAO.ProjectDAO;
@@ -49,7 +51,13 @@ public class ProjectHelper {
 	
 	public List<Integer> getProjectSkillListbyProjectId(int projectId) {
 		// TODO Auto-generated method stub
-		return null;
+		List<Integer> skillIdList = new ArrayList<Integer>();
+		Project project = projectDAO.findById(projectId);
+		Set<Skill> set = project.getSkills();
+		for(Skill skill : set){
+			skillIdList.add(skill.getSkillId());
+		}
+		return skillIdList;
 	}
 	
 
