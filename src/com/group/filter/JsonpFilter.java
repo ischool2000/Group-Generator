@@ -23,8 +23,10 @@ public class JsonpFilter implements Filter{
 		// TODO Auto-generated method stub
 		if(request.getParameter("callback") != null){
 			response.getWriter().write(request.getParameter("callback") + "(");
-			chain.doFilter(request, response);
+			
 			response.getWriter().write(");");
+		}else{
+			chain.doFilter(request, response);
 		}
 		
 	}

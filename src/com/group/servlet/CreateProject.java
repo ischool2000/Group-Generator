@@ -39,7 +39,7 @@ public class CreateProject extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int professorId = (Integer) request.getSession().getAttribute("professorId");
-		int classId = Integer.parseInt( request.getParameter("classId"));
+		int classId = Integer.parseInt(request.getParameter("classId"));
 		String name = request.getParameter("name");
 		int groupSize = Integer.parseInt(request.getParameter("groupSize"));
 		String jsonObject = request.getParameter("skillArray");
