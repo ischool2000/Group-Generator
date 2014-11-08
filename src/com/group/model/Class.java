@@ -16,7 +16,7 @@ public class Class implements java.io.Serializable {
 	private String name;
 	private Set classStudentRs = new HashSet(0);
 	private Set projects = new HashSet(0);
-
+	private Set students = new HashSet(0);
 	// Constructors
 
 	/** default constructor */
@@ -72,6 +72,20 @@ public class Class implements java.io.Serializable {
 
 	public void setProjects(Set projects) {
 		this.projects = projects;
+	}
+
+	/**
+	 * @return the students
+	 */
+	public Set getStudents() {
+		return students;
+	}
+
+	/**
+	 * @param students the students to set
+	 */
+	public void setStudents(Set students) {
+		this.students = students;
 	}
 
 }

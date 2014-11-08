@@ -40,5 +40,11 @@
             </key>
             <one-to-many class="com.group.model.GroupStudentR" />
         </set>
+     <!--    
+         <set name="skills" table="STUDENT_SKILL_R"  lazy ="false" cascade ="none">
+            <key column="skill_id"/>
+            <many-to-many class="com.group.model.Skill" column="skill_id" />
+        </set> -->
+        
     </class>
 </hibernate-mapping>
