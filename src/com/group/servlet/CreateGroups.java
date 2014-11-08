@@ -56,7 +56,7 @@ public class CreateGroups extends HttpServlet {
 			ArrayList<Integer> studentid_list = classHelper.getStudentIdListbyClassId(classId);
 			ransort aa = new ransort();
 			List<List<Integer>> list = aa.randomsort(studentid_list, groupnum);
-			List studentList = groupHelper.createGroup(list);
+			List studentList = groupHelper.createGroup(list, projectId);
 			JSONArray studentArray = new JSONArray();
 	    	for(int i = 0;i < studentList.size();i++){
 	    		Student student = (Student) studentList.get(i);
