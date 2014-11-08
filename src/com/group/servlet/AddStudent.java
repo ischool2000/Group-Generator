@@ -58,6 +58,12 @@ public class AddStudent extends HttpServlet {
 		
 		JSONObject object = new JSONObject();
 		object.element("flag", flag);
+		
+		response.setContentType("text/json");
+		response.setCharacterEncoding("UTF-8");
+		response.setHeader("Cache-Control", "no-cache");
+		
+		response.getWriter().write(object.toString());
 	}
 
 	/**
