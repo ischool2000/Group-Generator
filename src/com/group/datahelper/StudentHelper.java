@@ -16,15 +16,17 @@ public class StudentHelper {
 	StudentDAO studentDAO = new StudentDAO();
 	SkillDAO skillDAO = new SkillDAO();
 	StudentSkillRDAO relationDAO = new StudentSkillRDAO();
-	public boolean addStudent(int studentId, Map<Integer, Integer> map) {
+	public boolean addStudent(int studentId, short gender, Map<Integer, Integer> map) {
 		try{
-			
+			System.out.println("map.size : " + map.size());
 		
 			Iterator it = map.entrySet().iterator();
 		    while (it.hasNext()) {
 		    	StudentSkillR relation = new StudentSkillR();
 		        Map.Entry pairs = (Map.Entry)it.next();
 		        Student student = studentDAO.findById(studentId);
+		        student.setGender(gender);
+		        studentDAO.update(student);
 		        Skill skill = skillDAO.findById((Integer)pairs.getKey());
 		        relation.setScale((Integer) pairs.getValue());
 		        relation.setSkill(skill);

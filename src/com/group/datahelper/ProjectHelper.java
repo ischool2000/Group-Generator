@@ -59,6 +59,12 @@ public class ProjectHelper {
 		}
 		return skillIdList;
 	}
+	public Project getByProjectId(int projectId) {
+		// TODO Auto-generated method stub
+		Project project = projectDAO.findById(projectId);
+		project.getSkills();
+		return project;
+	}
 	
 
 

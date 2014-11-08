@@ -85,9 +85,9 @@ public class Login extends HttpServlet {
 		if(isMatch){
 			request.getSession().setAttribute("professorId", professor.getProfessorId());
 			request.getSession().setAttribute("name", professor.getName());	
-			object.element("isMatch", "true");
+			object.element("isMatch", true);
 		}else{
-			object.element("isMatch", "false");
+			object.element("isMatch", false);
 		}
 		
 		response.setContentType("text/json");
