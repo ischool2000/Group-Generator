@@ -28,7 +28,7 @@ public class GroupDAO extends BaseHibernateDAO {
 	// property constants
 	public static final String NAME = "name";
 
-	public void save(Group transientInstance) {
+	public void save(Group transientInstance) throws RuntimeException{
 		log.debug("saving Group instance");
 		Transaction tx = getSession().beginTransaction();
 		getSession().save(transientInstance);

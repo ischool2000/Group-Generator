@@ -27,7 +27,7 @@ public class GroupStudentRDAO extends BaseHibernateDAO {
 
 	// property constants
 
-	public void save(GroupStudentR transientInstance) {
+	public void save(GroupStudentR transientInstance) throws RuntimeException{
 		log.debug("saving GroupStudentR instance");
 		Transaction tx = getSession().beginTransaction();
 		getSession().save(transientInstance);
