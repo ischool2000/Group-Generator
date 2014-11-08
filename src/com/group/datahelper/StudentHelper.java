@@ -58,6 +58,7 @@ public class StudentHelper {
 	public boolean addStudent(List<Student> studentsList, int classId) {
 		// TODO Auto-generated method stub
 		Class classes = classDAO.findById(classId);
+		Class
 		return false;
 	}
 
