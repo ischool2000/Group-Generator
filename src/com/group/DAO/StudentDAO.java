@@ -32,15 +32,14 @@ public class StudentDAO extends BaseHibernateDAO {
 	public static final String VALIDATE = "validate";
 	public static final String GENDER = "gender";
 
-	public void save(Student transientInstance) {
+	public void save(Student transientInstance) throws RuntimeException{
 		log.debug("saving Student instance");
-		try {
-			getSession().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
-		}
+		Transaction tx = getSession().beginTransaction();
+		getSession().save(transientInstance);
+		log.debug("save successful");
+		tx.commit();
+		getSession().flush();
+		getSession().close();
 	}
 	
 	public void update(Student transientInstance) throws RuntimeException{

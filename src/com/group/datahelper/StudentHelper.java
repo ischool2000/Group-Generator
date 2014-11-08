@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.group.DAO.ClassDAO;
+import com.group.DAO.ClassStudentRDAO;
 import com.group.DAO.SkillDAO;
 import com.group.DAO.StudentDAO;
 import com.group.DAO.StudentSkillRDAO;
+import com.group.model.ClassStudentR;
 import com.group.model.Skill;
 import com.group.model.Student;
 import com.group.model.StudentSkillR;
@@ -17,6 +19,7 @@ public class StudentHelper {
 	StudentDAO studentDAO = new StudentDAO();
 	SkillDAO skillDAO = new SkillDAO();
 	StudentSkillRDAO relationDAO = new StudentSkillRDAO();
+	ClassStudentRDAO classStudentRDAO = new ClassStudentRDAO();
 	public boolean addStudent(int studentId, short gender, Map<Integer, Integer> map) {
 		try{
 			System.out.println("map.size : " + map.size());
@@ -55,11 +58,22 @@ public class StudentHelper {
 		return null;
 	}
 
-	public boolean addStudent(List<Student> studentsList, int classId) {
+	public boolean addStudent(List<Student> studentList, int classId) {
 		// TODO Auto-generated method stub
-		Class classes = classDAO.findById(classId);
-		Class
-		return false;
+		try{
+			Class classes = classDAO.findById(classId);
+			ClassStudentR relation = new ClassStudentR();
+			for(Student student : studentList){
+				studentDAO.save(student);
+				relation.setClasses(classes);
+				relation.setStudent(student);
+				classStudentRDAO.save(relation);
+			}
+		}catch(Exception e){
+			return false;
+		}
+		
+		return true;
 	}
 
 
