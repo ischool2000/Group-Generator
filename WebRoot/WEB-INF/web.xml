@@ -42,6 +42,13 @@
     <servlet-name>ViewProject</servlet-name>
     <servlet-class>com.group.servlet.ViewProject</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ViewClass</servlet-name>
+    <servlet-class>com.group.servlet.ViewClass</servlet-class>
+  </servlet>
+
 
 
 	<filter>  
@@ -74,6 +81,10 @@
   <servlet-mapping>
     <servlet-name>ViewProject</servlet-name>
     <url-pattern>/ViewProject</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ViewClass</servlet-name>
+    <url-pattern>/ViewClass</url-pattern>
   </servlet-mapping>
   
   <filter-mapping>  
