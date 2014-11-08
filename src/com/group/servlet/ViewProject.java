@@ -41,7 +41,7 @@ public class ViewProject extends HttpServlet {
 		projectJson.element("projectId", project.getProjectId());
 		projectJson.element("name", project.getName());
 		projectJson.element("groupSize", project.getGroupSize());
-		projectJson.element("Algorithm", project.getAlgorithm());
+		projectJson.element("algorithm", project.getAlgorithm());
 		
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");
