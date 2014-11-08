@@ -7,8 +7,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
 
+import com.group.model.Project;
 import com.group.model.Student;
 
 /**
@@ -39,6 +41,16 @@ public class StudentDAO extends BaseHibernateDAO {
 			log.error("save failed", re);
 			throw re;
 		}
+	}
+	
+	public void update(Student transientInstance) throws RuntimeException{
+		log.debug("saving Student instance");
+		Transaction tx = getSession().beginTransaction();
+		getSession().update(transientInstance);
+		log.debug("save successful");
+		tx.commit();
+		getSession().flush();
+		getSession().close();
 	}
 
 	public void delete(Student persistentInstance) {
