@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.group.datahelper.ClassHelper;
+import com.group.datahelper.GroupHelper;
+import com.group.datahelper.ProjectHelper;
 import com.group.datahelper.StudentHelper;
 import com.group.model.Skill;
 import com.group.model.Student;
@@ -29,6 +31,8 @@ public class CreateGroups extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     ClassHelper classHelper = new ClassHelper();
     StudentHelper studentHelper = new StudentHelper();
+    ProjectHelper projectHelper = new ProjectHelper();
+    GroupHelper groupHelper = new GroupHelper();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -52,7 +56,7 @@ public class CreateGroups extends HttpServlet {
 			ArrayList<Integer> studentid_list = classHelper.getStudentIdListbyClassId(classId);
 			ransort aa = new ransort();
 			List<List<Integer>> list = aa.randomsort(studentid_list, groupnum);
-			List studentList = studentHelper.getStudentbyGroupList(list);
+			List studentList = groupHelper.createGroup(list);
 			JSONArray studentArray = new JSONArray();
 	    	for(int i = 0;i < studentList.size();i++){
 	    		Student student = (Student) studentList.get(i);
@@ -68,9 +72,9 @@ public class CreateGroups extends HttpServlet {
 		else if(algorithm == 2){//sort
 			HashMap<Integer, HashMap<Integer, Integer>> StudentSkill = classHelper.getStudentSkillListbyClassId(classId);
 			mainsort aa = new mainsort();
-			List<Integer> ProjectSkill = classHelper.getProjectSkillListbyProjectId(projectId);
+			List<Integer> ProjectSkill = projectHelper.getProjectSkillListbyProjectId(projectId);
 			List<List<Integer>> list = aa.mainsort(StudentSkill, ProjectSkill, groupnum);
-			List studentList = studentHelper.getStudentbyGroupList(list);
+			List studentList = groupHelper.createGroup(list);
 			JSONArray studentArray = new JSONArray();
 	    	for(int i = 0;i < studentList.size();i++){
 	    		Student student = (Student) studentList.get(i);

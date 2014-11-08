@@ -19,7 +19,7 @@ public class Student implements java.io.Serializable {
 	private Set classStudentRs = new HashSet(0);
 	private Set studentSkillRs = new HashSet(0);
 	private Set groupStudentRs = new HashSet(0);
-
+    //private Set skills = new HashSet(0);
 	// Constructors
 
 	/** default constructor */
@@ -104,4 +104,13 @@ public class Student implements java.io.Serializable {
 		this.groupStudentRs = groupStudentRs;
 	}
 
+	/*public Set getSkills() {
+		return skills;
+	}
+
+	public void setSkills(Set skills) {
+		this.skills = skills;
+	}*/
+
+	
 }

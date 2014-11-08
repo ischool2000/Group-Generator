@@ -9,6 +9,8 @@ import com.group.DAO.ClassDAO;
 import com.group.model.Professor;
 import com.group.model.Class;
 import com.group.model.Project;
+import com.group.model.Student;
+import com.group.model.StudentSkillR;
 public class ClassHelper {
 	
 	ClassDAO classDAO = new ClassDAO();
@@ -33,8 +35,13 @@ public class ClassHelper {
 	
 	public ArrayList<Integer> getStudentIdListbyClassId(int classId) {
 		// TODO Auto-generated method stub
-		
-		return null;
+		ArrayList<Integer> studentIdList = new ArrayList();
+		Class classes = classDAO.findById(classId);
+		Set<Student> set = classes.getStudents();
+		for(Student student : set){
+			studentIdList.add(student.getStudentId());
+		}
+		return studentIdList;
 	}
 
 	public  List getClasses(int classId) {
@@ -51,14 +58,24 @@ public class ClassHelper {
 	public HashMap<Integer, HashMap<Integer, Integer>> getStudentSkillListbyClassId(
 			int classId) {
 		// TODO Auto-generated method stub
-		return null;
+		//HashMap<studentId, HashMap<skillId, scale>>
+		ArrayList<Integer> studentIdList = new ArrayList();
+		Class classes = classDAO.findById(classId);
+		Set<Student> set = classes.getStudents();
+		HashMap<Integer, HashMap<Integer, Integer>> map = new HashMap<Integer, HashMap<Integer, Integer>>();
+		
+		for(Student student : set){
+			HashMap<Integer, Integer> skillMap = new HashMap<Integer, Integer>();
+			Set<StudentSkillR> skillR = student.getStudentSkillRs();
+			for(StudentSkillR relation : skillR){
+				skillMap.put(relation.getSkill().getSkillId(), relation.getScale());
+			}
+			map.put(student.getStudentId(), skillMap);
+		}
+		return map;
 	}
 
-	public List<Integer> getProjectSkillListbyProjectId(int projectId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 
 	
 

@@ -28,5 +28,11 @@
             </key>
             <one-to-many class="com.group.model.Project" />
         </set>
+        
+         <set name="students" table="CLASS_STUDENT_R"  lazy ="false" cascade ="none">
+            <key column="class_id"/>
+            <many-to-many class="com.group.model.Student" column="student_id" />
+        </set>
+        
     </class>
 </hibernate-mapping>
