@@ -2,6 +2,7 @@ package com.group.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import com.group.datahelper.ClassHelper;
 import com.group.datahelper.StudentHelper;
 import com.group.model.Skill;
 import com.group.model.Student;
+import com.group.util.mainsort;
 import com.group.util.ransort;
 
 import net.sf.json.JSONArray;
@@ -43,9 +45,9 @@ public class CreateGroups extends HttpServlet {
 		JSONObject object = new JSONObject();
 		int algorithm = Integer.parseInt(request.getParameter("algorithm"));
 		int groupnum = Integer.parseInt(request.getParameter("groupnum"));
-		String skillSet = (String)request.getParameter("skillSet");
 		int classId = Integer.parseInt(request.getParameter("classId"));
-
+		int projectId = Integer.parseInt(request.getParameter("projectId"));
+		
 		if(algorithm == 1){ //randomsort
 			ArrayList<Integer> studentid_list = classHelper.getStudentIdListbyClassId(classId);
 			ransort aa = new ransort();
@@ -64,14 +66,23 @@ public class CreateGroups extends HttpServlet {
 			
 		}
 		else if(algorithm == 2){//sort
-			JSONArray skillArray = new JSONArray();
-			skillArray.fromObject(skillSet);
-			List<Integer> ProjectSkill = new ArrayList<Integer>();
-			for(int i = 0; i < skillArray.size(); i++){
-				JSONObject skillObject = (JSONObject) skillArray.get(i);
-				ProjectSkill.add(skillObject.getInt("skillId"));
-			}
+			HashMap<Integer, HashMap<Integer, Integer>> StudentSkill = classHelper.getStudentSkillListbyClassId(classId);
+			mainsort aa = new mainsort();
+			List<Integer> ProjectSkill = classHelper.getProjectSkillListbyProjectId(projectId);
+			List<List<Integer>> list = aa.mainsort(StudentSkill, ProjectSkill, groupnum);
+			List studentList = studentHelper.getStudentbyGroupList(list);
+			JSONArray studentArray = new JSONArray();
+	    	for(int i = 0;i < studentList.size();i++){
+	    		Student student = (Student) studentList.get(i);
+	    		JSONObject studentObject = new JSONObject();
+	    		studentObject.element("name", student.getName());
+	    		studentObject.element("email", student.getEmail());
+	    		studentArray.add(studentObject);
+	    	}
+			
+			object.element("studentArray", studentArray);
 		}
+		
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("Cache-Control", "no-cache");

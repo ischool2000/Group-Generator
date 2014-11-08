@@ -61,9 +61,7 @@ public class CreateProject extends HttpServlet {
 			object.element("name", project.getName());
 			object.element("url", project.getUrl());
 		}
-		
-		
-		
+
 		
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");

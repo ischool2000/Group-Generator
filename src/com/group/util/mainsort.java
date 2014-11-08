@@ -9,6 +9,8 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class mainsort {
 	public List<List<Integer>> mainsort(HashMap<Integer, HashMap<Integer, Integer>> StudentSkill, List<Integer> ProjectSkill, int groupnum){
@@ -28,8 +30,7 @@ public class mainsort {
         for(int key: StudentWeightAfter.keySet()){
             studentid_list.add(key);
         }
-
-		int student_per_group = Math.round(studentid_list.size()/groupnum);
+		int student_per_group = Math.round(((float)studentid_list.size())/groupnum);
 		int ph = 0, pt = studentid_list.size()-1;
 		for(int i=0; i < groupnum-1; i++){
 	        ArrayList<Integer> subList = new ArrayList<Integer>();
@@ -46,24 +47,17 @@ public class mainsort {
 		
 	}
 	
-	private static HashMap sortByValues(HashMap map) { 
-		List list = new LinkedList(map.entrySet());
-		// Defined Custom Comparator here
-		Collections.sort(list, new Comparator() {
-			public int compare(Object o1, Object o2) {
-				return ((Comparable) ((Map.Entry) (o1)).getValue())
-						.compareTo(((Map.Entry) (o2)).getValue());
-			}
-		});
-
-		// Here I am copying the sorted list in HashMap
-		// using LinkedHashMap to preserve the insertion order
-		HashMap sortedHashMap = new LinkedHashMap();
-		for (Iterator it = list.iterator(); it.hasNext();) {
-			Map.Entry entry = (Map.Entry) it.next();
-			sortedHashMap.put(entry.getKey(), entry.getValue());
-		} 
-		return sortedHashMap;
+	private static HashMap<Integer, Integer> sortByValues(HashMap<Integer, Integer> map) { 
+        Set<Entry<Integer, Integer>> set = map.entrySet();
+        List<Entry<Integer, Integer>> list = new ArrayList<Entry<Integer, Integer>>(set);
+        Collections.sort( list, new Comparator<Map.Entry<Integer, Integer>>()
+        {
+            public int compare( Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2 )
+            {
+                return (o2.getValue()).compareTo( o1.getValue() );
+            }
+        } );
+        return map;
 	}
 }
 
