@@ -56,17 +56,9 @@ public class CreateGroups extends HttpServlet {
 			ArrayList<Integer> studentid_list = classHelper.getStudentIdListbyClassId(classId);
 			ransort aa = new ransort();
 			List<List<Integer>> list = aa.randomsort(studentid_list, groupnum);
-			List studentList = groupHelper.createGroup(list, projectId);
-			JSONArray studentArray = new JSONArray();
-	    	for(int i = 0;i < studentList.size();i++){
-	    		Student student = (Student) studentList.get(i);
-	    		JSONObject studentObject = new JSONObject();
-	    		studentObject.element("name", student.getName());
-	    		studentObject.element("email", student.getEmail());
-	    		studentArray.add(studentObject);
-	    	}
+			boolean flag = groupHelper.createGroup(list, projectId);
 			
-			object.element("studentArray", studentArray);
+			object.element("flag", flag);
 			
 		}
 		else if(algorithm == 2){//sort
@@ -74,17 +66,9 @@ public class CreateGroups extends HttpServlet {
 			mainsort aa = new mainsort();
 			List<Integer> ProjectSkill = projectHelper.getProjectSkillListbyProjectId(projectId);
 			List<List<Integer>> list = aa.mainsort(StudentSkill, ProjectSkill, groupnum);
-			List studentList = groupHelper.createGroup(list);
-			JSONArray studentArray = new JSONArray();
-	    	for(int i = 0;i < studentList.size();i++){
-	    		Student student = (Student) studentList.get(i);
-	    		JSONObject studentObject = new JSONObject();
-	    		studentObject.element("name", student.getName());
-	    		studentObject.element("email", student.getEmail());
-	    		studentArray.add(studentObject);
-	    	}
+			boolean flag = groupHelper.createGroup(list, projectId);
 			
-			object.element("studentArray", studentArray);
+			object.element("flag", flag);
 		}
 		
 		response.setContentType("text/json");
