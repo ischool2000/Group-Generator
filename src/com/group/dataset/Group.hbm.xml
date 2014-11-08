@@ -22,5 +22,10 @@
             </key>
             <one-to-many class="com.group.model.GroupStudentR" />
         </set>
+        
+        <set name="students" table="GROUP_STUDENT_R"  lazy ="false" cascade ="none">
+            <key column="group_id"/>
+            <many-to-many class="com.group.model.Student" column="student_id" />
+        </set> 
     </class>
 </hibernate-mapping>

@@ -15,7 +15,7 @@ public class Group implements java.io.Serializable {
 	private Project project;
 	private String name;
 	private Set groupStudentRs = new HashSet(0);
-
+	private Set students = new HashSet(0);
 	// Constructors
 
 	/** default constructor */
@@ -61,6 +61,20 @@ public class Group implements java.io.Serializable {
 
 	public void setGroupStudentRs(Set groupStudentRs) {
 		this.groupStudentRs = groupStudentRs;
+	}
+
+	/**
+	 * @return the students
+	 */
+	public Set getStudents() {
+		return students;
+	}
+
+	/**
+	 * @param students the students to set
+	 */
+	public void setStudents(Set students) {
+		this.students = students;
 	}
 
 }

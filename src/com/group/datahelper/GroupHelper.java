@@ -1,13 +1,17 @@
 package com.group.datahelper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import com.group.DAO.GroupDAO;
 import com.group.DAO.GroupStudentRDAO;
+import com.group.DAO.ProjectDAO;
 import com.group.DAO.StudentDAO;
 import com.group.model.Group;
 import com.group.model.GroupStudentR;
+import com.group.model.Project;
 import com.group.model.Student;
 
 public class GroupHelper {
@@ -15,6 +19,7 @@ public class GroupHelper {
 	private GroupDAO groupDAO = new GroupDAO();
 	private StudentDAO studentDAO = new StudentDAO();
 	private GroupStudentRDAO groupStudentRDAO = new GroupStudentRDAO();
+	private ProjectDAO projectDAO = new ProjectDAO();
 	public List<Student> createGroup(List<List<Integer>> list) {
 		// TODO Auto-generated method stub
 		List<Student> studentList = new ArrayList<Student>();
@@ -33,6 +38,23 @@ public class GroupHelper {
 			}
 		}
 		return studentList;
+	}
+	public HashMap<Group, List<Student>> getStudentGroupbyProjectId(
+			int projectId) {
+		// TODO Auto-generated method stub
+		Project project = projectDAO.findById(projectId);
+		Set <Group> set = project.getGroups();
+		HashMap<Group, List<Student>> map = new HashMap<Group, List<Student>>();
+		for(Group group : set){
+			Set<Student> studentSet = group.getStudents();
+			List<Student> list = new ArrayList();
+			
+			for(Student student : studentSet){
+				list.add(student);
+			}
+			map.put(group, list);
+		}
+		return map;
 	}
 	
 }
