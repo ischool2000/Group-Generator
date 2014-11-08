@@ -13,7 +13,7 @@ import net.sf.json.JSONObject;
 
 import com.group.datahelper.ProfessorHelper;
 import com.group.model.Class;
-public class ViewClass extends HttpServlet{
+public class ViewClassList extends HttpServlet{
 	ProfessorHelper professorHelper = new ProfessorHelper();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int profId = (Integer) request.getSession().getAttribute("professorId");

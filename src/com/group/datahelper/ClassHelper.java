@@ -1,6 +1,9 @@
 package com.group.datahelper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 import com.group.DAO.ClassDAO;
 import com.group.model.Professor;
@@ -30,8 +33,33 @@ public class ClassHelper {
 	
 	public ArrayList<Integer> getStudentIdListbyClassId(int classId) {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
+
+	public  List getClasses(int classId) {
+		// TODO Auto-generated method stub
+		List projectList = new ArrayList();
+		Class classes = classDAO.findById(classId);
+		Set<Project> set = classes.getProjects();
+		for(Project project : set){
+			projectList.add(project);
+		}
+		return projectList;
+	}
+
+	public HashMap<Integer, HashMap<Integer, Integer>> getStudentSkillListbyClassId(
+			int classId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<Integer> getProjectSkillListbyProjectId(int projectId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	
 
 }
