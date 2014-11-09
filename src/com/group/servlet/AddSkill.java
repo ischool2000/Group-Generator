@@ -35,9 +35,15 @@ public class AddSkill extends HttpServlet {
 			throws ServletException, IOException {
 
 		String name = request.getParameter("name");
-		boolean flag = skillHelper.addSkill(name);
+		int skillId = skillHelper.addSkill(name);
 		JSONObject object = new JSONObject();
-		object.element("flag", flag);
+		if(skillId == -1){
+			object.element("flag", false);
+		}else{
+			object.element("flag", true);
+			object.element("skillId", skillId);
+		}
+		
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("Cache-Control", "no-cache");
