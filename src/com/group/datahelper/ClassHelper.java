@@ -75,6 +75,13 @@ public class ClassHelper {
 		return map;
 	}
 
+	public Class getClassByClassId(int classId) {
+		// TODO Auto-generated method stub
+		Class classes = classDAO.findById(classId);
+	
+		return classes;
+	}
+
 	
 
 	

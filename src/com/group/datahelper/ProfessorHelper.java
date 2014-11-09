@@ -39,7 +39,7 @@ public class ProfessorHelper {
 			String email) {
 		// TODO Auto-generated method stub
 		if(!professorDAO.findByUsername(username).isEmpty()
-				|| professorDAO.findByEmail(email).isEmpty())
+				|| !professorDAO.findByEmail(email).isEmpty())
 			return false;
 		
 		Professor professor = new Professor();

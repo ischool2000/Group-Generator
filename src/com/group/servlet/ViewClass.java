@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.group.datahelper.ClassHelper;
+import com.group.model.Class;
 public class ViewClass extends HttpServlet {
-
+	ClassHelper classHelper = new ClassHelper();
 	/**
 	 * Constructor of the object.
 	 */
@@ -31,7 +33,7 @@ public class ViewClass extends HttpServlet {
 			throws ServletException, IOException {
 
 		int classId = Integer.parseInt(request.getParameter("classId"));
-		Class classes = 
+		Class classes = classHelper.getClassByClassId(classId);
 	}
 
 }
