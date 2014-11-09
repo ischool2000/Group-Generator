@@ -44,6 +44,7 @@ public class ViewGroups extends HttpServlet {
 		int projectId = Integer.parseInt(request.getParameter("projectId"));
 		HashMap<Group, List<Student>> studentGroupList = groupHelper.getStudentGroupbyProjectId(projectId);
 		// TODO Auto-generated method stub
+		JSONArray StudentGroupArray = new JSONArray();
 		JSONObject StudentGroupObject = new JSONObject();
         for(Map.Entry<Group, List<Student>> studentEntry : studentGroupList.entrySet()){
         	JSONArray GroupArray = new JSONArray();
@@ -55,7 +56,9 @@ public class ViewGroups extends HttpServlet {
     	    	studentObject.element("gender", Students.get(j).getGender());
             	GroupArray.add(studentObject);
         	}
-            StudentGroupObject.element(studentEntry.getKey().getName(), GroupArray);
+            StudentGroupObject.element("name", studentEntry.getKey().getName());
+            StudentGroupObject.element("student", GroupArray);
+            StudentGroupArray.add(StudentGroupObject);
         }
 
         
