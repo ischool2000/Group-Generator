@@ -7,9 +7,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
 
+import com.group.model.ClassStudentR;
 import com.group.model.Group;
 
 /**
@@ -37,7 +39,21 @@ public class GroupDAO extends BaseHibernateDAO {
 		getSession().flush();
 		getSession().close();
 	}
+	
+	public int deleteByProjectId(int projectId) {
+		
+		 String sql = "Delete from [Group] Where project_id = " + projectId;
+		 getSession().getHibernateTemplate().findByNamedParam(sql, "name", '%' + str + '%');
 
+		 
+		
+		 int query =this.getSession().createSQLQuery(sql).executeUpdate();  
+	        this.getSession().flush(); //清理缓存，执行批量插入  
+	        this.getSession().clear(); //清空缓存中的 对象 
+	     return query;
+		
+	}
+	
 	public void delete(Group persistentInstance) {
 		log.debug("deleting Group instance");
 		try {

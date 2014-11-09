@@ -14,7 +14,7 @@ public class SkillHelper {
 		return skillList;
 	}
 	
-	public boolean addSkill(String name){
+	public int addSkill(String name){
 		Skill skill = new Skill();
 		skill.setName(name);
 		List skillList = skillDAO.findByName(name);
@@ -24,12 +24,12 @@ public class SkillHelper {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				return false;
+				return -1;
 			}
 		}else
-			return false;
+			return -1;
 		
-		return true;
+		return skill.getSkillId();
 	}
 	
 }
