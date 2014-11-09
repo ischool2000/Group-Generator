@@ -58,8 +58,8 @@ public class CreateProject extends HttpServlet {
 		if(project == null){
 			object.element("flag", "false");
 		}else{
-			object.element("name", project.getName());
-			object.element("url", project.getUrl());
+			object.element("projectId", project.getProjectId());
+			//object.element("url", project.getUrl());
 		}
 
 		
