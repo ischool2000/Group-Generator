@@ -2,16 +2,21 @@ package com.group.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import com.group.datahelper.ProjectHelper;
 import com.group.model.Project;
+import com.group.model.Skill;
+import com.group.model.Student;
 
 public class ViewProject extends HttpServlet {
 	ProjectHelper projectHelper = new ProjectHelper();
@@ -40,9 +45,21 @@ public class ViewProject extends HttpServlet {
 		JSONObject projectJson = new JSONObject();
 		projectJson.element("projectId", project.getProjectId());
 		projectJson.element("name", project.getName());
-		projectJson.element("groupSize", project.getGroupSize());
+		projectJson.element("groupNum", project.getGroupNumber());
 		projectJson.element("url", project.getUrl());
 		projectJson.element("algorithm", project.getAlgorithm());
+		// TODO Auto-generated method stub
+		List<Skill> skillList = projectHelper.getProjectSkillbyProjectId(projectId);
+		JSONArray skillArray = new JSONArray();
+    	for(int i = 0;i < skillList.size();i++){
+    		Skill skill = (Skill) skillList.get(i);
+    		JSONObject skillObject = new JSONObject();
+    		skillObject.element("name", skill.getName());
+    		skillArray.add(skillObject);
+    	}
+		projectJson.element("skillArray", skillArray);
+		
+
 		
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");
