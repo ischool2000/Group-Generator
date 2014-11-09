@@ -18,7 +18,7 @@ import com.group.datahelper.ClassHelper;
 @WebServlet("/DeleteClass")
 public class DeleteClass extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    ClassHelper classHelper = new ClassHelperHelper();   
+    ClassHelper classHelper = new ClassHelper();   
     /**
      * @see HttpServlet#HttpServlet()
      */
