@@ -53,10 +53,7 @@ public class StudentHelper {
 		return studentList.get(0);
 	}
 
-	public List createGroup(List<List<Integer>> list) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	public boolean addStudent(List<Student> studentList, int classId) {
 		// TODO Auto-generated method stub
@@ -64,10 +61,20 @@ public class StudentHelper {
 			Class classes = classDAO.findById(classId);
 			ClassStudentR relation = new ClassStudentR();
 			for(Student student : studentList){
-				studentDAO.save(student);
+				if(studentDAO.findByEmail(student.getEmail()).isEmpty()){
+					studentDAO.save(student);
+					
+				}else{
+					student = (Student) studentDAO.findByEmail(student.getEmail()).get(0);
+				}
+				
 				relation.setClasses(classes);
 				relation.setStudent(student);
-				classStudentRDAO.save(relation);
+				
+				if(!classStudentRDAO.isExist(relation)){
+					classStudentRDAO.save(relation);
+				}
+				
 			}
 		}catch(Exception e){
 			return false;

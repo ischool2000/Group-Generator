@@ -6,6 +6,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
 
@@ -26,6 +27,13 @@ public class ClassStudentRDAO extends BaseHibernateDAO {
 	private static final Log log = LogFactory.getLog(ClassStudentRDAO.class);
 
 	// property constants
+    public boolean isExist (ClassStudentR relation) {
+        String sql = "Select * from Class_Student_R Where student_id = " + relation.getStudent().getStudentId() + 
+        		" And class_id = " + relation.getClasses().getClassId();
+        SQLQuery query = this.getSession().createSQLQuery(sql);
+        List relationList = query.list();
+        return !relationList.isEmpty();
+    }
 
 	public void save(ClassStudentR transientInstance) throws RuntimeException {
 		log.debug("saving ClassStudentR instance");
