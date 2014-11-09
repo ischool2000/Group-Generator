@@ -17,6 +17,7 @@ import com.group.datahelper.ProjectHelper;
 import com.group.datahelper.StudentHelper;
 import com.group.model.Skill;
 import com.group.model.Student;
+import com.group.util.gendersort;
 import com.group.util.mainsort;
 import com.group.util.ransort;
 
@@ -66,6 +67,15 @@ public class CreateGroups extends HttpServlet {
 			mainsort aa = new mainsort();
 			List<Integer> ProjectSkill = projectHelper.getProjectSkillListbyProjectId(projectId);
 			List<List<Integer>> list = aa.mainsort(StudentSkill, ProjectSkill, groupnum);
+			boolean flag = groupHelper.createGroup(list, projectId);
+			
+			object.element("flag", flag);
+		}
+		
+		else if(algorithm == 3){//gendersort
+			ArrayList<Integer> studentid_list = classHelper.getStudentIdListbyClassIdSortByGender(classId);
+			gendersort aa = new gendersort();
+			List<List<Integer>> list = aa.gendersort(studentid_list, groupnum);
 			boolean flag = groupHelper.createGroup(list, projectId);
 			
 			object.element("flag", flag);
