@@ -42,11 +42,7 @@ public class GroupDAO extends BaseHibernateDAO {
 	
 	public int deleteByProjectId(int projectId) {
 		
-		 String sql = "Delete from [Group] Where project_id = " + projectId;
-		 getSession().getHibernateTemplate().findByNamedParam(sql, "name", '%' + str + '%');
-
-		 
-		
+		 String sql = "Delete from `Group` Where project_id = " + projectId;
 		 int query =this.getSession().createSQLQuery(sql).executeUpdate();  
 	        this.getSession().flush(); //清理缓存，执行批量插入  
 	        this.getSession().clear(); //清空缓存中的 对象 

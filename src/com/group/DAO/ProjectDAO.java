@@ -53,15 +53,14 @@ public class ProjectDAO extends BaseHibernateDAO {
 		getSession().close();
 	}
 
-	public void delete(Project persistentInstance) {
+	public void delete(Project persistentInstance) throws RuntimeException{
 		log.debug("deleting Project instance");
-		try {
-			getSession().delete(persistentInstance);
-			log.debug("delete successful");
-		} catch (RuntimeException re) {
-			log.error("delete failed", re);
-			throw re;
-		}
+		Transaction tx = getSession().beginTransaction();
+		getSession().delete(persistentInstance);
+		log.debug("save successful");
+		tx.commit();
+		getSession().flush();
+		getSession().close();
 	}
 
 	public Project findById(java.lang.Integer id) {

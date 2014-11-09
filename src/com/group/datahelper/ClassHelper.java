@@ -82,6 +82,41 @@ public class ClassHelper {
 		return classes;
 	}
 
+	public ArrayList<Integer> getStudentIdListbyClassIdSortByGender(int classId) {
+		// TODO Auto-generated method stub
+		
+		Class classes = classDAO.findById(classId);
+		Set<Student> set = classes.getStudents();
+		ArrayList<Integer> studentIdList = new ArrayList();
+		ArrayList<Integer> femaleList = new ArrayList();
+		for(Student student : set){
+			if (student.getGender() == 0){
+				studentIdList.add(student.getStudentId());
+			}else{
+				femaleList.add(student.getStudentId());
+			}
+			
+			for(Integer id : femaleList){
+				studentIdList.add(id);
+			}
+		
+		}
+		return studentIdList;
+		
+	}
+
+	public boolean deleteClassById(int classId) {
+		// TODO Auto-generated method stub
+		try{
+			Class classes = classDAO.findById(classId);
+			classDAO.delete(classes);
+		}catch(Exception e){
+			return false;
+		}
+		
+		return true;
+	}
+
 	
 
 	

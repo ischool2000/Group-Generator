@@ -65,6 +65,17 @@ public class ProjectHelper {
 		project.getSkills();
 		return project;
 	}
+	public boolean deleteProjectById(int projectId) {
+		// TODO Auto-generated method stub
+		try{
+			  Project project = projectDAO.findById(projectId);
+			    projectDAO.delete(project);
+		}catch(Exception e){
+			return false;
+		}
+	  
+		return true;
+	}
 	
 
 

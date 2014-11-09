@@ -38,15 +38,14 @@ public class ClassDAO extends BaseHibernateDAO {
 		getSession().close();
 	}
 
-	public void delete(Class persistentInstance) {
+	public void delete(Class classes) throws RuntimeException{
 		log.debug("deleting Class instance");
-		try {
-			getSession().delete(persistentInstance);
-			log.debug("delete successful");
-		} catch (RuntimeException re) {
-			log.error("delete failed", re);
-			throw re;
-		}
+		Transaction tx = getSession().beginTransaction();
+		getSession().delete(classes);
+		log.debug("delete successful");
+		tx.commit();
+		getSession().flush();
+		getSession().close();
 	}
 
 	public com.group.model.Class findById(java.lang.Integer id) {
