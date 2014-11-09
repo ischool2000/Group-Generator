@@ -76,6 +76,16 @@ public class ProjectHelper {
 	  
 		return true;
 	}
+	public List<Skill> getProjectSkillbyProjectId(int projectId) {
+		// TODO Auto-generated method stub
+		List<Skill> skillList = new ArrayList<Skill>();
+		Project project = projectDAO.findById(projectId);
+		Set<Skill> set = project.getSkills();
+		for(Skill skill : set){
+			skillList.add(skill);
+		}
+		return skillList;
+	}
 	
 
 
