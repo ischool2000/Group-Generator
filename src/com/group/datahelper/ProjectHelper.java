@@ -17,11 +17,11 @@ public class ProjectHelper {
 	SkillDAO skillDAO = new SkillDAO();
 	ProjectSkillRDAO projectSkillDAO = new ProjectSkillRDAO();
 	ClassDAO classDAO = new ClassDAO();
-	public Project createProject(int professorId, int classId, String domain, String servlet, String name,  List<Integer> skillList) {
+	public Project createProject(int professorId, int classId, int groupNum, String domain, String servlet, String name,  List<Integer> skillList) {
 		// TODO Auto-generated method stub
 		Project project = new Project();
 		project.setName(name);
-		//project.setGroupSize(groupSize);
+		project.setGroupNumber(groupNum);
 	
 		try{
 			Class classes = classDAO.findById(classId);
