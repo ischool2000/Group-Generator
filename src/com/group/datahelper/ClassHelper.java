@@ -111,6 +111,7 @@ public class ClassHelper {
 			Class classes = classDAO.findById(classId);
 			classDAO.delete(classes);
 		}catch(Exception e){
+			e.printStackTrace();
 			return false;
 		}
 		

@@ -31,20 +31,20 @@
         <property name="reportType" type="java.lang.Integer">
             <column name="report_type" />
         </property>
-        <set name="groups" inverse="true">
+        <set name="groups" inverse="true" cascade ="delete">
             <key>
                 <column name="project_id" />
             </key>
             <one-to-many class="com.group.model.Group" />
         </set>
-        <set name="projectSkillRs" inverse="true" cascade ="delete">
+        <set name="projectSkillRs" cascade ="delete">
             <key>
                 <column name="project_id" />
             </key>
             <one-to-many class="com.group.model.ProjectSkillR" />
         </set>
         
-        <set name="skills" table="Project_Skill_R"  lazy ="false" cascade ="delete">
+        <set name="skills" table="Project_Skill_R"  lazy ="false">
 
             <key column="project_id"/>
             <many-to-many class="com.group.model.Skill" column="skill_id" />

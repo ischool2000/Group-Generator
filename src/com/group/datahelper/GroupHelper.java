@@ -23,14 +23,18 @@ public class GroupHelper {
 	public boolean createGroup(List<List<Integer>> list, int projectId) {
 		// TODO Auto-generated method stub
 		//List<Student> studentList = new ArrayList<Student>();
-		int result = groupDAO.deleteByProjectId(projectId);
-		System.out.println("result" + result);
+		
 		try{
+			Project project = projectDAO.findById(projectId);
+			Set<Group> set = project.getGroups();
+			for(Group group : set){
+				groupDAO.delete(group);
+			}
+			
 			for(int i = 0;i < list.size();i++){
 			
 				Group group = new Group();
 				group.setName("Group " + (i + 1));
-				Project project = projectDAO.findById(projectId);
 				group.setProject(project);
 				groupDAO.save(group);
 				List<Integer> studentIdList = list.get(i);

@@ -17,11 +17,11 @@ public class ProjectHelper {
 	SkillDAO skillDAO = new SkillDAO();
 	ProjectSkillRDAO projectSkillDAO = new ProjectSkillRDAO();
 	ClassDAO classDAO = new ClassDAO();
-	public Project createProject(int professorId, int classId, String domain, String servlet, String name, int groupSize, List<Integer> skillList) {
+	public Project createProject(int professorId, int classId, String domain, String servlet, String name,  List<Integer> skillList) {
 		// TODO Auto-generated method stub
 		Project project = new Project();
 		project.setName(name);
-		project.setGroupSize(groupSize);
+		//project.setGroupSize(groupSize);
 	
 		try{
 			Class classes = classDAO.findById(classId);
@@ -69,8 +69,10 @@ public class ProjectHelper {
 		// TODO Auto-generated method stub
 		try{
 			  Project project = projectDAO.findById(projectId);
-			    projectDAO.delete(project);
+			  System.out.println(project.getProjectId());
+			   projectDAO.delete(project);
 		}catch(Exception e){
+			System.out.println(e);
 			return false;
 		}
 	  

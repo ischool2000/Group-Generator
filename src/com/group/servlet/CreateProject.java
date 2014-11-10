@@ -41,7 +41,7 @@ public class CreateProject extends HttpServlet {
 		int professorId = (Integer) request.getSession().getAttribute("professorId");
 		int classId = Integer.parseInt(request.getParameter("classId"));
 		String name = request.getParameter("name");
-		int groupSize = Integer.parseInt(request.getParameter("groupSize"));
+		//int groupSize = Integer.parseInt(request.getParameter("groupSize"));
 		String jsonObject = request.getParameter("skillArray");
 		
 		JSONArray skillArray = new JSONArray();
@@ -53,7 +53,7 @@ public class CreateProject extends HttpServlet {
 			skillList.add(skillObject.getInt("skillId"));
 		}
 		String domain = request.getServerName() +  ":" + request.getServerPort() + request.getContextPath();
-		Project project =  projectHelper.createProject(professorId, classId, domain, servlet, name, groupSize, skillList);
+		Project project =  projectHelper.createProject(professorId, classId, domain, servlet, name,  skillList);
 		JSONObject object = new JSONObject();
 		if(project == null){
 			object.element("flag", "false");

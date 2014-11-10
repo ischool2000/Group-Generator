@@ -16,13 +16,13 @@
         <property name="name" type="java.lang.String">
             <column name="name" length="50" />
         </property>
-        <set name="classStudentRs" inverse="true" cascade ="delete">
+        <set name="classStudentRs"  cascade ="delete">
             <key>
                 <column name="class_id" />
             </key>
             <one-to-many class="com.group.model.ClassStudentR" />
         </set>
-        <set name="projects" inverse="true" lazy="false" cascade ="delete">
+        <set name="projects"  lazy="false" cascade ="delete">
             <key>
                 <column name="class_id" />
             </key>
