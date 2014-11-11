@@ -44,7 +44,7 @@
             <one-to-many class="com.group.model.ProjectSkillR" />
         </set>
         
-        <set name="skills" table="Project_Skill_R"  lazy ="false">
+        <set name="skills" table="Project_Skill_R"  lazy ="false" order-by="skill_id asc">
 
             <key column="project_id"/>
             <many-to-many class="com.group.model.Skill" column="skill_id" />

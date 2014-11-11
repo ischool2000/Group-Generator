@@ -22,7 +22,7 @@
         <property name="email" type="java.lang.String">
             <column name="email" length="50" />
         </property>
-        <set name="classes" inverse="true">
+        <set name="classes" inverse="true" order-by="class_id asc">
             <key>
                 <column name="professor_id" />
             </key>

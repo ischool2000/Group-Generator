@@ -71,6 +71,7 @@ public class ProfessorHelper {
 		Professor professor = professorDAO.findById(profId);
 		Set<Class> set = professor.getClasses();
 		List classesList = new ArrayList<Class>();
+		System.out.println(set);
 		for(Class classes : set){
 			classesList.add(classes);
 		}

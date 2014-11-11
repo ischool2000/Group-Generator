@@ -22,7 +22,7 @@
             </key>
             <one-to-many class="com.group.model.ClassStudentR" />
         </set>
-        <set name="projects"  lazy="false" cascade ="delete">
+        <set name="projects"  lazy="false" cascade ="delete" order-by="project_id asc">
             <key>
                 <column name="class_id" />
             </key>
