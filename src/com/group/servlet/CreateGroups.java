@@ -50,8 +50,9 @@ public class CreateGroups extends HttpServlet {
 		JSONObject object = new JSONObject();
 		int algorithm = Integer.parseInt(request.getParameter("algorithm"));
 		int groupnum = Integer.parseInt(request.getParameter("groupnum"));
-		int classId = Integer.parseInt(request.getParameter("classId"));
+		//int classId = Integer.parseInt(request.getParameter("classId"));
 		int projectId = Integer.parseInt(request.getParameter("projectId"));
+		int classId = projectHelper.getClassId(projectId);
 		
 		if(algorithm == 1){ //randomsort
 			ArrayList<Integer> studentid_list = classHelper.getStudentIdListbyClassId(classId);
