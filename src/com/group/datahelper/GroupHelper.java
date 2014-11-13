@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import com.group.DAO.DAOManager;
 import com.group.DAO.GroupDAO;
 import com.group.DAO.GroupStudentRDAO;
 import com.group.DAO.ProjectDAO;
@@ -16,10 +17,10 @@ import com.group.model.Student;
 
 public class GroupHelper {
 
-	private GroupDAO groupDAO = new GroupDAO();
-	private StudentDAO studentDAO = new StudentDAO();
-	private GroupStudentRDAO groupStudentRDAO = new GroupStudentRDAO();
-	private ProjectDAO projectDAO = new ProjectDAO();
+	private GroupDAO groupDAO = DAOManager.getGroupDAO();
+	private StudentDAO studentDAO =	DAOManager.getStudentDAO();
+	private GroupStudentRDAO groupStudentRDAO = DAOManager.getGroupStudentRDAO();
+	private ProjectDAO projectDAO = DAOManager.getProjectDAO();
 	public boolean createGroup(List<List<Integer>> list, int projectId) {
 		// TODO Auto-generated method stub
 		//List<Student> studentList = new ArrayList<Student>();

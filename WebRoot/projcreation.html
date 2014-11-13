@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+    <meta charset="utf-8">
+    <!--  *********  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Group Generator | Project Creation</title>
+    <!-- Include bootstrap CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+
+<body>
+
+
+<!-- Site header  -->
+
+<nav class="navbar navbar-default" role="navigation" style = "background-color:#428BCA;margin:-3px -3px -3px -3px;">
+  <div class="container-fluid">
+  	<p class="navbar-text" style="color:white;"><strong>Group Generator</strong></p>
+    <button type="button" class="btn btn-primary" id ="logout">
+  <span class="glyphicon glyphicon-off"  ></span> Log out
+    </button>
+  </div>
+</nav>
+
+
+<!-- Middle content section -->
+<div class="container-float ">
+<h4 class="page-title"> Project Creation</h4>
+</div>
+
+<div class="container">
+<div id="projcreation"></div>
+<input id="classId" type="hidden" value="" />
+<div  class = "form-style">
+   <div class="form-group form-item" id = "project-name-input">
+      <label >Project Name</label>
+      <input id="projectName" type="text" class="form-control" placeholder="Project name">
+   </div>
+<!--end the project name input -->
+
+<div class="form-group form-item">
+<label>Desired group number</label>
+<p></p>
+<select id="groupSize" class="form-control" style="width:20%;">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+</select>
+</div>
+<!--end the dropdowm menu -->
+
+
+<div class="form-group form-item">
+  <label>Relevent skills</label><a id="addSkill" style="margin-left:10px;" href="javascript:void(0)">add new</a>
+    <div class="checkbox">
+    </div>
+    
+<!--end the skill checkbox -->
+
+<button  class="btn btn-success btn-lg" id= "btn-create-project">Create</button>
+<button  class="btn btn-success btn-lg" id= "btn-create-projecta">Back</button>
+
+</div>
+</div>
+
+
+
+<!-- Site footer section -->
+
+
+<!-- Include jQuery and bootstrap JS plugins -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="bootstrap/js/bootbox.min.js"></script>
+<script src="bootstrap/js/script.js"></script>
+</body>
+</html>

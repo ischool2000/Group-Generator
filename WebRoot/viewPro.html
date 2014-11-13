@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+    <meta charset="utf-8">
+    <!--  *********  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Group Generator | Project Management</title>
+    <!-- Include bootstrap CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+
+<body>
+
+
+<!-- Site header  -->
+
+<nav class="navbar navbar-default" role="navigation"
+ style = "background-color:#428BCA;margin:-3px -3px -3px -3px;">
+  <div class="container-fluid">
+  	<p class="navbar-text" style="color:white;"><strong>Group Generator</strong></p>
+    <button type="button" class="btn btn-primary " id ="logout">
+  <span class="glyphicon glyphicon-off"  ></span> Log out
+    </button>
+  </div>
+</nav>
+
+
+<!-- Middle content section -->
+<div id="viewPro"></div>
+<div class="container-fluid">
+  <h4 class="page-title">Project Management</h4>
+</div>
+
+<div class="container ">
+<input id="projId" type="hidden" value="" />
+  <div class="panel panel-primary" id="project-name-panel">
+    <div class="panel-heading">Project name</div>
+  </div>
+
+  <div class="panel panel-warning" id="project-url-panel">
+    <div class="panel-heading">Submission Form Url</div>
+  </div>
+
+  <!--<div class="panel panel-success" id="class-size-panel">
+    <div class="panel-heading">Class size</div>
+    <div class="panel-body" id="class-size">64</div>
+  </div>-->
+
+  <div class="panel panel-info" id="group-num-panel">
+    <div class="panel-heading">Group Total</div>
+  </div>
+  
+   <!--<div class="panel panel-danger" id="class-size-panel">
+    <div class="panel-heading">Number of submissions</div>
+    <div class="panel-body" id="class-size">55</div>
+  </div>-->
+
+
+  <div class="panel panel-danger" id="skill-list-panel">
+    <div class="panel-heading">Relevent Skills</div>
+    <div class="panel-body" id= "relevent-skill">
+    </div>
+  </div>
+   <a id="viewGroup" style="margin-left: 25%; font-size:1.5em;" href="javascript:void(0);">View Student Groups</a>
+ <div  class = "form-style" role="form">
+   <div class ="form-group form-item" style=" max-width:350px;margin-left:auto;margin-right:auto;">
+    <label> Choose your desired algorithm</label>
+    <p></p>
+    <select id="algorithm" class="form-control">
+      <option value="1" selected="selected">Random</option>
+      <option value="2">Skill Relevance</option>
+      <option value="3">Gender Relevance</option>
+    </select>
+  </div>
+      <button class="btn btn-success btn-lg" id= "btn-generate">Generate</button>
+      <button class="btn btn-success btn-lg" id= "btn-generatea">Back</button>
+
+  </div>
+
+
+
+</div>
+
+<!-- Site footer section -->
+
+
+<!-- Include jQuery and bootstrap JS plugins -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="bootstrap/js/bootbox.min.js"></script>
+<script src="bootstrap/js/script.js"></script>
+</body>

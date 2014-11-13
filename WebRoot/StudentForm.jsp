@@ -20,17 +20,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <title>My JSP 'StudentForm.jsp' starting page</title> 
 
-    <!-- <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="style.css" rel="stylesheet"> -->
+    <link href="style.css" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-    <!-- <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 
     <script src="bootstrap/js/bootbox.min.js"></script>
 
-    <script src="bootstrap/js/script.js"></script>-->
+    <script src="bootstrap/js/script.js"></script>
 
     <script type="text/javascript"> 
     $(document).ready(function(){

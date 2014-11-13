@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.group.DAO.ClassDAO;
+import com.group.DAO.DAOManager;
 import com.group.DAO.ProjectDAO;
 import com.group.DAO.ProjectSkillRDAO;
 import com.group.DAO.SkillDAO;
@@ -13,10 +14,10 @@ import com.group.model.ProjectSkillR;
 import com.group.model.Skill;
 import com.group.model.Class;
 public class ProjectHelper {
-	ProjectDAO projectDAO = new ProjectDAO();
-	SkillDAO skillDAO = new SkillDAO();
-	ProjectSkillRDAO projectSkillDAO = new ProjectSkillRDAO();
-	ClassDAO classDAO = new ClassDAO();
+	ProjectDAO projectDAO = DAOManager.getProjectDAO();
+	SkillDAO skillDAO = DAOManager.getSkillDAO();
+	ProjectSkillRDAO projectSkillDAO = DAOManager.getProjectSkillRDAO();
+	ClassDAO classDAO = DAOManager.getClassDAO();
 	public Project createProject(int professorId, int classId, int groupNum, String domain, String servlet, String name,  List<Integer> skillList) {
 		// TODO Auto-generated method stub
 		Project project = new Project();

@@ -8,6 +8,7 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
+import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
 
@@ -29,7 +30,7 @@ public class GroupDAO extends BaseHibernateDAO {
 	private static final Log log = LogFactory.getLog(GroupDAO.class);
 	// property constants
 	public static final String NAME = "name";
-
+	
 	public void save(Group transientInstance) throws RuntimeException{
 		log.debug("saving Group instance");
 		Transaction tx = getSession().beginTransaction();

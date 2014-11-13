@@ -7,8 +7,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
+
 import com.group.model.Class;
 /**
  * A data access object (DAO) providing persistence and search support for Class
@@ -25,7 +27,7 @@ public class ClassDAO extends BaseHibernateDAO {
 	private static final Log log = LogFactory.getLog(ClassDAO.class);
 	// property constants
 	public static final String NAME = "name";
-
+	
 	public void save(com.group.model.Class classes) throws RuntimeException{
 		Transaction tx = getSession().beginTransaction();
 		log.debug("saving Class instance");

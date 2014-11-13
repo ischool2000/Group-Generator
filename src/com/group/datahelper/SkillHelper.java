@@ -2,12 +2,13 @@ package com.group.datahelper;
 
 import java.util.List;
 
+import com.group.DAO.DAOManager;
 import com.group.DAO.SkillDAO;
 import com.group.model.Skill;
 
 public class SkillHelper {
 
-	private SkillDAO skillDAO = new SkillDAO();
+	private SkillDAO skillDAO = DAOManager.getSkillDAO();
 	public List getAllSkill() {
 		// TODO Auto-generated method stub
 		List skillList = skillDAO.findAll();

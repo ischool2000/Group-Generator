@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.group.DAO.ClassDAO;
+import com.group.DAO.DAOManager;
 import com.group.model.Professor;
 import com.group.model.Class;
 import com.group.model.Project;
@@ -13,7 +14,7 @@ import com.group.model.Student;
 import com.group.model.StudentSkillR;
 public class ClassHelper {
 	
-	ClassDAO classDAO = new ClassDAO();
+	ClassDAO classDAO = DAOManager.getClassDAO();
 	public Boolean createClass(int profId, String name) {
 		// TODO Auto-generated method stub
 		Professor professor = new Professor();

@@ -6,6 +6,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
 
@@ -26,7 +27,7 @@ public class ProjectSkillRDAO extends BaseHibernateDAO {
 	private static final Log log = LogFactory.getLog(ProjectSkillRDAO.class);
 
 	// property constants
-
+	
 	public void save(ProjectSkillR transientInstance) throws Exception{
 		log.debug("saving ProjectSkillR instance");
 		Transaction tx = getSession().beginTransaction();

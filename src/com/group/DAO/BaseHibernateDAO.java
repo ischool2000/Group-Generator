@@ -9,9 +9,13 @@ import org.hibernate.Session;
  * @author MyEclipse Persistence Tools
  */
 public class BaseHibernateDAO implements IBaseHibernateDAO {
-	
+	private static Session session;
 	public Session getSession() {
-		return HibernateSessionFactory.getSession();
+		if(session == null || !session.isOpen()){
+			session = HibernateSessionFactory.getSession();
+
+		}
+		System.out.println(session.hashCode());
+		return session;
 	}
-	
 }

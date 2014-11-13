@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.group.DAO.ClassDAO;
 import com.group.DAO.ClassStudentRDAO;
+import com.group.DAO.DAOManager;
 import com.group.DAO.SkillDAO;
 import com.group.DAO.StudentDAO;
 import com.group.DAO.StudentSkillRDAO;
@@ -15,11 +16,11 @@ import com.group.model.Student;
 import com.group.model.StudentSkillR;
 import com.group.model.Class;
 public class StudentHelper {
-	ClassDAO classDAO = new ClassDAO();
-	StudentDAO studentDAO = new StudentDAO();
-	SkillDAO skillDAO = new SkillDAO();
-	StudentSkillRDAO relationDAO = new StudentSkillRDAO();
-	ClassStudentRDAO classStudentRDAO = new ClassStudentRDAO();
+	ClassDAO classDAO = DAOManager.getClassDAO();
+	StudentDAO studentDAO = DAOManager.getStudentDAO();
+	SkillDAO skillDAO = DAOManager.getSkillDAO();
+	StudentSkillRDAO relationDAO = DAOManager.getStudentSkillDAO();
+	ClassStudentRDAO classStudentRDAO = DAOManager.getClassStudentRDAO();
 	public boolean addStudent(int studentId, short gender, Map<Integer, Integer> map) {
 		try{
 			System.out.println("map.size : " + map.size());

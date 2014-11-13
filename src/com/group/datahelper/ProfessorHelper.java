@@ -5,13 +5,14 @@ import java.util.List;
 import java.util.Set;
 
 import com.group.DAO.ClassDAO;
+import com.group.DAO.DAOManager;
 import com.group.DAO.ProfessorDAO;
 import com.group.model.Professor;
 import com.group.model.Class;
 public class ProfessorHelper {
 	
-	ProfessorDAO professorDAO = new ProfessorDAO();
-	ClassDAO classDAO = new ClassDAO();
+	ProfessorDAO professorDAO = DAOManager.getProfessorDAO();
+	ClassDAO classDAO = DAOManager.getClassDAO();
 	public Professor getRandomOne(){
 		Professor professor = (Professor) professorDAO.findAll().get(0);
 		return professor;

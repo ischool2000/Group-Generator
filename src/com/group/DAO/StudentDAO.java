@@ -39,7 +39,7 @@ public class StudentDAO extends BaseHibernateDAO {
 		log.debug("save successful");
 		tx.commit();
 		getSession().flush();
-		getSession().close();
+		//getSession().close();
 	}
 	
 	public void update(Student transientInstance) throws RuntimeException{
