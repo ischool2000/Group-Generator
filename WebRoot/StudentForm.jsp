@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <base href="<%=basePath%>">  
 
-    <title>My JSP 'StudentForm.jsp' starting page</title> 
+    <title>Submission Form</title> 
 
      <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
          s+='<input type="radio" name="'+skillArray[i].id+'Proficiency" value="2" />&nbsp;&nbsp;Medium&nbsp;&nbsp;';
 
-         s+='<input type="radio" name="'+skillArray[i].id+'Proficiency" value="3" />&nbsp;&nbsp;Low&nbsp;&nbsp;';
+         s+='<input type="radio" name="'+skillArray[i].id+'Proficiency" value="3" checked="checked"/>&nbsp;&nbsp;Low&nbsp;&nbsp;';
 
          s+='</span>';
 
@@ -107,7 +107,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             dataType: "jsonp",
 
             success: function(data){
-
+				if(data.flag==true){
+					alert("successfully join!");
+					window.close();
+            	}
+				else
+					alert("Fail to join!");
             }
 
         });

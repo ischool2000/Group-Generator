@@ -1,5 +1,12 @@
+function splitString(){
+    var content=$("#textarea").val();
+    var student=content.split('\n');
+    for(var i=0;i<student.length;i++)
+        alert(student[i]);
+}
+
 function jumpToCreation(_this){
-            var url="projcreation.html?"+"classId="+$(_this).val();
+            var url="projcreation.html?"+"classId="+$(_this).parent().prev().prev().prev().val();
             window.location.href=url;
 }
 
@@ -46,9 +53,12 @@ $(document).ready(function(){
                     s+='<input type="hidden" value="'+data.classArray[i].classId+'">';
                     s+='<a class="glyphicon glyphicon-remove-sign deleteClass" "title="Delete this class" href="javascript:void(0)">';
                     s+='</a>';
-                    s+='<h5 style="margin-top:-10%;" ><a class="class-name" href="javascript:void(0);">'+data.classArray[i].name;
-                    //s+='<a class="viewClass" href="javascript:void(0);">View Class Student</a>';
-                    s+='</a></h5>';
+                    s+='<h5 class="class-name" style="margin-top:-3%;">'+data.classArray[i].name+'</h5>';
+                    s+='<div class="btn-group" style="margin-bottom: 5px;">';
+                    s+='<a href="javascript:void(0)" class="btn btn-primary" onclick="jumpToCreation(this);">Add project</a>';
+                    s+='<a href="javascript:void(0)" class="btn btn-success viewStudent">View Students</a>';
+                    s+='<a href="javascript:void(0)" class="btn btn-warning addStudent">Add students</a>';
+                    s+='</div>';
                     s+='<ul class="project-list">';
                     for(var j=0;j<data.classArray[i].project.length;j++){
                         s+='<li class="project-name"><a href="viewPro.html?projId='+data.classArray[i].project[j].projectId+'">'+data.classArray[i].project[j].name+'</a>';
@@ -57,8 +67,8 @@ $(document).ready(function(){
                         s+='</li>';
                     }
                     s+='</ul>';
-                    s+='<button id="addProject" value="'+data.classArray[i].classId+'" \n\
-                        class="btn btn-success btn-sm" onclick="jumpToCreation(this);">Add project</button>';
+                    //s+='<button id="addProject" value="'+data.classArray[i].classId+'" \n\
+                    //    class="btn btn-success btn-sm" onclick="jumpToCreation(this);">Add project</button>';
                     $(".row").prepend(s);
                 }
             }
@@ -101,12 +111,12 @@ $(document).ready(function(){
             });
         });
         
-        $(document).on("click", ".class-name", function(e) {
+        $(document).on("click", ".viewStudent", function(e) {
             var s="";
             $.ajax({
                 type: "GET",
                 url: "http://angchen.cu.cc/GroupGen/ViewClass",
-                data: {classId: $(this).parent().prev().prev().val()},
+                data: {classId: $(this).parent().prev().prev().prev().val()},
                 dataType: "jsonp",
                 success: function(data){
                     s+='<table class="table table-bordered">';
@@ -128,6 +138,74 @@ $(document).ready(function(){
                     });
                 }
             });   
+        });
+        
+        $(document).on('click','.addStudent',function(e){
+            var _this=this;
+            var classId=$(this).parent().prev().prev().prev().val();
+            bootbox.dialog({
+                title: "Add Students",
+                message:'<p style="border-bottom: 1px solid rgba(236, 228, 228, 1);padding-bottom:2%;">Enter the names, email addresses, and validation numbers for the students in this class, with each item on a separate line. You can copy the data from Excel. The sequences of the three input areas must match.</p>'+
+                        '<div class="row">' +
+                       '<div class="col-md-12"> ' +
+                       '<label>Enter students\' names here:</label>'+
+                       '<textarea id="TextareaName" rows="10" cols="20" placeholder="Students\' Name" class="form-control addStudentTextarea"></textarea>' +
+                       '<label>Enter students\' emails here:</label>'+
+                       '<textarea id="TextareaEmail" rows="10" cols="20" placeholder="Students\' Email" class="form-control addStudentTextarea"></textarea>' +
+                       '<label>Enter students\' validations here:</label>'+
+                       '<textarea id="TextareaValidate" rows="10" cols="20" placeholder="Students\' Validation" class="form-control addStudentTextarea"></textarea>' +
+                       '</div> ',
+                       buttons: {
+                           Add: {
+                               label: "Add Students",
+                               className: "btn-success",
+                               callback: function () {
+                                    var names=$("#TextareaName").val().split('\n');
+                                    var emails=$("#TextareaEmail").val().split('\n');
+                                    var validates=$("#TextareaValidate").val().split('\n');
+                                    //alert(names[names.length-1]);
+                                    if(names[names.length-1]=='')
+                                        names.pop();
+                                    if(emails[emails.length-1]=='')
+                                        emails.pop();
+                                    if(validates[validates.length-1]== '')
+                                        validates.pop();
+                                    var student=new Array();
+                                    if(names.length==emails.length&&emails.length==validates.length){
+                                        for(var i=0;i<names.length;i++){
+                                            var myObject=new Object;
+                                            myObject.name=names[i];
+                                            myObject.email=emails[i];
+                                            myObject.validate=validates[i];
+                                            student.push(myObject);
+                                        } 
+                                    }
+                                    else
+                                        alert("Something missing. Please check again");
+                                    
+                                    var myJson=JSON.stringify(student);
+                                    $.ajax({
+                                        type: "GET",
+                                        url: "http://angchen.cu.cc/GroupGen/AddStudent",
+                                        data: {studentList:myJson,classId:classId},
+                                        dataType: "jsonp",
+                                        success: function(data){
+                                            if(data.flag=true)
+                                                window.location.reload();
+                                            else
+                                                alert("Fail to add students");
+                                        }
+                                    });
+                               }
+                           }
+                       }
+            });
+            //alert(1);
+            
+        });
+        
+        $(document).on("click", "#confirmAddStudent", function(e){
+            alert(1);
         });
         
         $(document).on("click", "#btn-addclass", function(e) {
@@ -210,7 +288,7 @@ $(document).ready(function(){
                         if(data.flag==true){
                             var s="";
                             s+='<label class="checkbox-inline">';
-                            s+='<input name="skill" value="'+data.skillId+'"type="checkbox"> '+data.skillName;
+                            s+='<input name="skill" value="'+data.skillId+'"type="checkbox"> '+skillName;
                             s+='</label>';
                             $(".checkbox").append(s);                      
                         }
@@ -226,12 +304,14 @@ $(document).ready(function(){
     if(document.getElementById("viewPro")){
         $("#projId").val(getQueryString("projId"));
         var projId=$("#projId").val();
+        var groupNum;
         $.ajax({
             type: "GET",
             url: "http://angchen.cu.cc/GroupGen/ViewProject",
             data: {projectId:projId},
             dataType: "jsonp",
             success: function(data){
+                groupNum=data.groupNum;
                 var s="";
                 s='<div class="panel-body">'+data.name+'</div>';
                 $("#project-name-panel").append(s);
@@ -255,7 +335,7 @@ $(document).ready(function(){
             $.ajax({
                 type: "GET",
                 url: "http://angchen.cu.cc/GroupGen/CreateGroups",
-                data: {projectId:projId, algorithm:$("#algorithm").val(), groupNum:$("#group-num").val(),},
+                data: {projectId:projId, algorithm:$("#algorithm").val(), groupNum:groupNum},
                 dataType: "jsonp",
                 success: function(data){
                     if(data.flag==true)
@@ -287,13 +367,23 @@ $(document).ready(function(){
                             s+='<td rowspan="'+data.StudentGroup[i].student.length+'">'+data.StudentGroup[i].name+'</td>';
                             s+='<td>'+data.StudentGroup[i].student[0].name+'</td>';
                             s+='<td>'+data.StudentGroup[i].student[0].email+'</td>';
-                            s+='<td>'+data.StudentGroup[i].student[0].gender+'</td>';
+                            if(data.StudentGroup[i].student[0].gender==0)
+                                s+='<td>Male</td>';
+                            else if(data.StudentGroup[i].student[0].gender==1)
+                                s+='<td>Female</td>';
+                            else
+                            	s+='<td></td>'
                             s+='</tr>';
                             for(var j=1;j<data.StudentGroup[i].student.length;j++){   
                                 s+='<tr>';
                                 s+='<td>'+data.StudentGroup[i].student[j].name+'</td>';
                                 s+='<td>'+data.StudentGroup[i].student[j].email+'</td>';
-                                s+='<td>'+data.StudentGroup[i].student[j].gender+'</td>';
+                                if(data.StudentGroup[i].student[j].gender==0)
+                                    s+='<td>Male</td>';
+                                else if(data.StudentGroup[i].student[j].gender==1)
+                                    s+='<td>Female</td>';
+                                else
+                                	s+='<td></td>';
                                 s+='</tr>';
                             }
                         }
@@ -384,4 +474,5 @@ $(document).ready(function(){
         });
     });
 });
+
 

@@ -49,7 +49,7 @@ public class CreateGroups extends HttpServlet {
 		// TODO Auto-generated method stub
 		JSONObject object = new JSONObject();
 		int algorithm = Integer.parseInt(request.getParameter("algorithm"));
-		int groupnum = Integer.parseInt(request.getParameter("groupnum"));
+		int groupnum = Integer.parseInt(request.getParameter("groupNum"));
 		//int classId = Integer.parseInt(request.getParameter("classId"));
 		int projectId = Integer.parseInt(request.getParameter("projectId"));
 		int classId = projectHelper.getClassId(projectId);
